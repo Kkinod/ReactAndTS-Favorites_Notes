@@ -1,5 +1,5 @@
 {
-  "name": "favorites-note",
+  "name": "Favorites notes",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -26,7 +26,15 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx,json}'",
-    "format": "prettier --write 'src/**/*.{ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write 'src/**/*.{ts,tsx,css,md,json}' --config ./.prettierrc",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.tsx": [
+      "prettier --config ,prettierrc --write",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [
@@ -50,6 +58,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1"
   }
 }
