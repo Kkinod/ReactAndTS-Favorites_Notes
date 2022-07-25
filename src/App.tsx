@@ -1,9 +1,7 @@
 import React from 'react'
 import './index.css'
 
-console.log('abc')
-
-function App() {
+const App = () => {
   return <div className='App'></div>
 }
 
