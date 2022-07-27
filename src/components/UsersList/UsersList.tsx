@@ -1,16 +1,19 @@
 import React from 'react'
+import { users } from '../../data/users'
+import UsersListItem from '../UsersListItem/UsersListItem'
 
 const UsersList = () => {
   return (
     <div>
       <ul>
-        <li>
-          <div>2.3</div>
-          <div>
-            <p>Kamil Pawełek</p>
-            <p>attendance: 38%</p>
-          </div>
-        </li>
+        {users.map((userData) => (
+          // eslint-disable-next-line react/jsx-key
+          <UsersListItem
+            name={userData.name}
+            attendance={userData.attendance}
+            average={userData.average}
+          />
+        ))}
       </ul>
     </div>
   )
