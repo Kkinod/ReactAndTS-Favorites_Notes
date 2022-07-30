@@ -1,13 +1,16 @@
 A project created as part of developing my own programming skills in React:
+
 - project configuration: eslint, prettier, husky, lint-staged
 - how to use and work with styled components
 - how to use the Atomic Design methodology in a project
-- 
+- working with React Router
+- how to use React Context
+- application testing: JEST and React Testing Library
 
 
 
 ===============================================
-## Available Scripts
+## How to start a project
 
 In the project directory, you can run:
 
