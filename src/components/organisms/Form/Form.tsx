@@ -9,13 +9,13 @@ interface IUsersList {
     average: string
 }
 
-interface abc {
+interface IFormProps {
     handleAddWorker: React.FormEventHandler<HTMLFormElement>
     formValues: IUsersList
     handleInputChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const Form = ({ handleAddWorker, formValues, handleInputChange }: abc) => {
+const Form = ({ handleAddWorker, formValues, handleInputChange }: IFormProps) => {
     return (
         <>
             <Wrapper as='form' onSubmit={handleAddWorker}>

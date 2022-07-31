@@ -4,18 +4,18 @@ import { StyledList, StyledTitle, Wrapper } from './UsersList.styled'
 import FormField from '../../molecules/FormField/FormField'
 import Button from '../../atoms/Button/Button'
 
-interface IUsersList2 {
+interface IUsersList {
     name: string
     attendance: string
     average: string
 }
 
-interface IUsersList {
-    users: IUsersList2[]
+interface IUsersListProps {
+    users: IUsersList[]
     deleteWorker: (name: string) => void
 }
 
-const UsersList = ({ users, deleteWorker }: IUsersList) => {
+const UsersList = ({ users, deleteWorker }: IUsersListProps) => {
     return (
         <>
             <Wrapper>
