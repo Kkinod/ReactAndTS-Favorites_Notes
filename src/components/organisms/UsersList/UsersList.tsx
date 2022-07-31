@@ -11,7 +11,7 @@ interface IUsersList {
 
 const UsersList = () => {
     const [users, setUsers] = useState<IUsersList[]>(usersData)
-    const [isLoading, setIsLoading] = useState([])
+    const [isLoading, setIsLoading] = useState<boolean>()
 
     const deleteUser = (name: string) => {
         const filteredUser = users.filter((user) => user.name !== name)
