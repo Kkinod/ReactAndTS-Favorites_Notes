@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import theme from '../../../assets/styles/theme'
 
-type Value = number
-type Theme = typeof theme
+interface Theme {
+    theme: typeof theme
+}
 
 interface ThemeAndValue {
-    theme: Theme
-    value: Value
+    theme: typeof theme
+    value: string | number
 }
 
 const Wrapper = styled.li`
@@ -31,8 +32,8 @@ export const StyledAverage = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: ${({ theme }: { theme: Theme }) => theme.fontSize.s};
-    color: ${({ theme }: { theme: Theme }) => theme.colors.white};
+    font-size: ${({ theme }: Theme) => theme.fontSize.s};
+    color: ${({ theme }: Theme) => theme.colors.white};
     font-weight: bold;
     background: ${({ theme, value }: ThemeAndValue) => {
         if (value > 4) return theme.colors.success
@@ -47,18 +48,18 @@ export const StyledInfo = styled.div`
 
     p {
         margin: 0;
-        color: ${({ theme }: { theme: Theme }) => theme.colors.darkGrey};
+        color: ${({ theme }: Theme) => theme.colors.darkGrey};
     }
 
     p:first-child {
         display: flex;
         align-items: center;
         font-weight: bold;
-        font-size: ${({ theme }: { theme: Theme }) => theme.fontSize.l};
+        font-size: ${({ theme }: Theme) => theme.fontSize.l};
     }
 
     p:last-child {
-        font-size: ${({ theme }: { theme: Theme }) => theme.fontSize.m};
+        font-size: ${({ theme }: Theme) => theme.fontSize.m};
     }
 `
 

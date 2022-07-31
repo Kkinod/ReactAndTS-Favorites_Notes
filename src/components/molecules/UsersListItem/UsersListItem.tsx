@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../../atoms/Button/Button'
+import DeleteButton from '../../atoms/DeleteButton/DeleteButton'
 import Wrapper, { StyledAverage, StyledInfo } from './UsersListItem.styled'
 
 interface IUsersList {
@@ -7,7 +7,7 @@ interface IUsersList {
     deleteUser: (name: string) => void
     name: string
     attendance: string
-    average: number
+    average: string
 }
 
 const UsersListItem = ({ index, deleteUser, name, attendance = '0%', average }: IUsersList) => {
@@ -17,7 +17,7 @@ const UsersListItem = ({ index, deleteUser, name, attendance = '0%', average }: 
             <StyledInfo>
                 <p>
                     {name}
-                    <Button onClick={deleteUser} />
+                    <DeleteButton onClick={deleteUser} />
                 </p>
                 <p>attendance: {attendance}</p>
             </StyledInfo>
