@@ -1,23 +1,26 @@
 import React from 'react'
-import styled from 'styled-components'
 import Button from '../../atoms/Button/Button'
-import Wrapper from './UsersListItem.styled'
+import Wrapper, { StyledAverage, StyledInfo } from './UsersListItem.styled'
 
 interface IUsersList {
+    index: number
+    deleteUser: (name: string) => void
     name: string
     attendance: string
-    average: string
+    average: number
 }
 
-const UsersListItem = ({ name, attendance, average }: IUsersList) => {
+const UsersListItem = ({ index, deleteUser, name, attendance = '0%', average }: IUsersList) => {
     return (
-        <Wrapper key={name}>
-            <div>{average}</div>
-            <div>
-                <p>{name}</p>
-                <p>{attendance}</p>
-            </div>
-            <Button />
+        <Wrapper>
+            <StyledAverage value={average}>{average}</StyledAverage>
+            <StyledInfo>
+                <p>
+                    {name}
+                    <Button onClick={deleteUser} />
+                </p>
+                <p>attendance: {attendance}</p>
+            </StyledInfo>
         </Wrapper>
     )
 }

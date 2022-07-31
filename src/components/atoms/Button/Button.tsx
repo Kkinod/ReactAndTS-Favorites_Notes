@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { ReactComponent as DeleteIcon } from '../../../assets/icons/delete-icon.svg'
 import StyledButton from './Button.styled'
 
-const Button = () => {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    onClick: () => void
+}
+
+const Button = (props: ButtonProps) => {
     return (
-        <StyledButton>
+        <StyledButton {...props}>
             <DeleteIcon />
         </StyledButton>
     )
