@@ -15,18 +15,18 @@ export const users = [
         average: '4.0',
     },
     {
-        name: 'Krzysztof Pawelek',
+        name: 'Krzysztof Pawel',
         attendance: '45%',
         average: '3.3',
     },
     {
-        name: 'Krzysztof Pawelek',
+        name: 'Krzysztof Krzysztof',
         attendance: '45%',
-        average: '3.3',
+        average: '2.1',
     },
     {
-        name: 'Krzysztof Pawelek',
+        name: 'Krzysztof Józek',
         attendance: '45%',
-        average: '3.3',
+        average: '2',
     },
 ]

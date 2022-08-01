@@ -1,17 +1,39 @@
 import React from 'react'
-import { users } from '../../../data/users'
 import UsersListItem from '../../molecules/UsersListItem/UsersListItem'
-import { Wrapper, StyledList } from './UsersList.styled'
+import { StyledList, StyledTitle, Wrapper } from './UsersList.styled'
+import FormField from '../../molecules/FormField/FormField'
+import Button from '../../atoms/Button/Button'
 
-const UsersList = () => {
+interface IUsersList {
+    name: string
+    attendance: string
+    average: string
+}
+
+interface IUsersListProps {
+    users: IUsersList[]
+    deleteWorker: (name: string) => void
+}
+
+const UsersList = ({ users, deleteWorker }: IUsersListProps) => {
     return (
-        <Wrapper>
-            <StyledList>
-                {users.map((userData) => (
-                    <UsersListItem key={userData.name} name={userData.name} attendance={userData.attendance} average={userData.average} />
-                ))}
-            </StyledList>
-        </Wrapper>
+        <>
+            <Wrapper>
+                <StyledTitle>Worker list</StyledTitle>
+                <StyledList>
+                    {users.map((userData, i) => (
+                        <UsersListItem
+                            index={i}
+                            deleteUser={deleteWorker}
+                            key={userData.name}
+                            name={userData.name}
+                            attendance={userData.attendance}
+                            average={userData.average}
+                        />
+                    ))}
+                </StyledList>
+            </Wrapper>
+        </>
     )
 }
 
