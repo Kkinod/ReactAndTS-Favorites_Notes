@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Label } from '../../atoms/Label/Label'
 import { Input } from '../../atoms/Input/Input'
+import styled from 'styled-components'
 
 const Wrapper = styled.div`
     display: flex;
@@ -14,8 +14,7 @@ const Wrapper = styled.div`
 `
 
 interface FormField {
-    // onChange?: (e: React.FormEvent<HTMLFormElement>) => void
-    onChange?: any
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     value: string
     label: string
     name: string

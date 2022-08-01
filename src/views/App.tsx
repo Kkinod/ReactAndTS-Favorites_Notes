@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import { users as usersData } from '../data/users'
 import Form from '../components/organisms/Form/Form'
 
-interface IUsersList {
+export interface IUsersList {
     name: string
     attendance: string
     average: string
@@ -30,7 +30,6 @@ const App = () => {
     }
 
     const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        console.log(formValues)
         setFormValue({
             ...formValues,
             [e.target.name]: e.target.value,

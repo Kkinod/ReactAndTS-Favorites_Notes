@@ -2,12 +2,7 @@ import React from 'react'
 import { StyledTitle, Wrapper } from '../UsersList/UsersList.styled'
 import FormField from '../../molecules/FormField/FormField'
 import Button from '../../atoms/Button/Button'
-
-interface IUsersList {
-    name: string
-    attendance: string
-    average: string
-}
+import { IUsersList } from '../../../views/App'
 
 interface IFormProps {
     handleAddWorker: React.FormEventHandler<HTMLFormElement>

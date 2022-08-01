@@ -1,14 +1,7 @@
 import React from 'react'
 import UsersListItem from '../../molecules/UsersListItem/UsersListItem'
 import { StyledList, StyledTitle, Wrapper } from './UsersList.styled'
-import FormField from '../../molecules/FormField/FormField'
-import Button from '../../atoms/Button/Button'
-
-interface IUsersList {
-    name: string
-    attendance: string
-    average: string
-}
+import { IUsersList } from '../../../views/App'
 
 interface IUsersListProps {
     users: IUsersList[]
@@ -24,7 +17,7 @@ const UsersList = ({ users, deleteWorker }: IUsersListProps) => {
                     {users.map((userData, i) => (
                         <UsersListItem
                             index={i}
-                            deleteUser={deleteWorker}
+                            deleteWorker={deleteWorker}
                             key={userData.name}
                             name={userData.name}
                             attendance={userData.attendance}
