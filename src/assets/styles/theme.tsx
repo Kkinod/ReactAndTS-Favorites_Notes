@@ -1,3 +1,7 @@
+export interface Theme {
+    theme: typeof theme
+}
+
 const theme = {
     colors: {
         white: '#FFFFFF',

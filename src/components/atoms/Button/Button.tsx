@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import theme from '../../../assets/styles/theme'
 
-interface Theme {
+export interface Theme {
     theme: typeof theme
 }
 
