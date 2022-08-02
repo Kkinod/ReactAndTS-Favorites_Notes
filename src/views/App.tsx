@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import UsersList from '../components/organisms/UsersList/UsersList'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from '../assets/styles/globalStyle'
 import theme from '../assets/styles/theme'
 import Wrapper from './App.styles'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { users as usersData } from '../data/users'
-import Form from '../components/organisms/Form/Form'
 import MainTemplate from '../components/templates/MainTemplate/MainTemplate'
+import AddUser from './AddUser'
+import Dashboard from './Dashboard'
 
 export interface IUsersList {
     name: string
@@ -59,7 +59,7 @@ const App = () => {
                             <Route
                                 path='/add-user'
                                 element={
-                                    <Form
+                                    <AddUser
                                         formValues={formValues}
                                         handleAddWorker={handleAddWorker}
                                         handleInputChange={handleInputChange}
@@ -68,7 +68,7 @@ const App = () => {
                             />
                             <Route
                                 path='/'
-                                element={<UsersList deleteWorker={deleteWorker} users={users} />}
+                                element={<Dashboard deleteWorker={deleteWorker} users={users} />}
                             />
                         </Routes>
                     </Wrapper>

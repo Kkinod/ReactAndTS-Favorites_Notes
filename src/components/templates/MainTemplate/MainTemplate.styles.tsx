@@ -1,3 +1,4 @@
+import { Theme } from '../../../assets/styles/theme'
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
@@ -8,5 +9,5 @@ export const Wrapper = styled.div`
     padding: 0;
     display: grid;
     grid-template-columns: 150px 1fr;
-    background-color: ${({ theme }) => theme.colors.lightGrey};
+    background-color: ${({ theme }: Theme) => theme.colors.lightGrey};
 `

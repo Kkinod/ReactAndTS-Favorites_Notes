@@ -1,9 +1,5 @@
 import styled from 'styled-components'
-import theme from '../../../assets/styles/theme'
-
-interface Theme {
-    theme: typeof theme
-}
+import theme, { Theme } from '../../../assets/styles/theme'
 
 interface ThemeAndValue {
     theme: typeof theme
