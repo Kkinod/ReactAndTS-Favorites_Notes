@@ -1,20 +1,36 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import FormField from '../components/molecules/FormField/FormField'
-import Button from '../components/atoms/Button/Button'
+import { Button } from '../components/atoms/Button/Button'
 import ViewWrapper from '../components/molecules/ViewWrapper/ViewWrapper'
 import Title from '../components/atoms/Title/Title'
-import { IUsersList } from '../views/App'
+import { UsersContext } from '../providers/UsersProviders'
 
-interface IFormProps {
-    handleAddWorker: React.FormEventHandler<HTMLFormElement>
-    formValues: IUsersList
-    handleInputChange: React.ChangeEventHandler<HTMLInputElement>
+const initialFormState = {
+    name: '',
+    attendance: '',
+    average: '',
 }
 
-const Form = ({ handleAddWorker, formValues, handleInputChange }: IFormProps) => {
+const AddUser = () => {
+    const [formValues, setFormValues] = useState(initialFormState)
+    const { handleAddUser } = useContext(UsersContext)
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormValues({
+            ...formValues,
+            [e.target.name]: e.target.value,
+        })
+    }
+
+    const handleSubmitUser = (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        handleAddUser(formValues)
+        setFormValues(initialFormState)
+    }
+
     return (
-        <ViewWrapper as='form' onSubmit={handleAddWorker}>
-            <Title>Add new worker</Title>
+        <ViewWrapper as='form' onSubmit={handleSubmitUser}>
+            <Title>Add new student</Title>
             <FormField
                 label='Name'
                 id='name'
@@ -41,4 +57,4 @@ const Form = ({ handleAddWorker, formValues, handleInputChange }: IFormProps) =>
     )
 }
 
-export default Form
+export default AddUser
