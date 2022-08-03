@@ -2,6 +2,8 @@ import { Theme } from '../../../assets/styles/theme'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
+const className = 'active'
+
 export const Wrapper = styled.nav`
     width: 100%;
     height: 100%;
@@ -29,7 +31,6 @@ export const Logo = styled.div`
     }
 `
 
-const className = 'active'
 export const StyledLink = styled(NavLink).attrs({
     className: (navData) => (navData.isActive ? 'active' : ''),
 })`

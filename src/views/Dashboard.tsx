@@ -1,17 +1,14 @@
 import React, { useContext } from 'react'
 import ViewWrapper from '../components/molecules/ViewWrapper/ViewWrapper'
 import UsersList from '../components/organisms/UsersList/UsersList'
-import { IUsersList } from '../views/App'
+import { UsersContext } from '../providers/UsersProviders'
 
-interface IDashboardProps {
-    users: IUsersList[]
-    deleteWorker: (name: string) => void
-}
+const Dashboard = () => {
+    const { users } = useContext(UsersContext)
 
-const Dashboard = ({ users, deleteWorker }: IDashboardProps) => {
     return (
         <ViewWrapper>
-            <UsersList users={users} deleteWorker={deleteWorker} />
+            <UsersList users={users} />
         </ViewWrapper>
     )
 }
