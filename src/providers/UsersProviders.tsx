@@ -12,28 +12,28 @@ export interface IUsersList {
 }
 
 interface Context {
-    users: never[]
-    handleAddUser: (p: IUsersList) => void
-    deleteUser: () => void
+    users: IUsersList[]
+    handleAddWorker: (p: IUsersList) => void
+    deleteWorker: (p: string) => void
 }
 
 export const UsersContext = React.createContext<Context>({
     users: [],
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    handleAddUser: () => {},
+    handleAddWorker: () => {},
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    deleteUser: () => {},
+    deleteWorker: () => {},
 })
 
 const UsersProvider = ({ children }: IChildren) => {
     const [users, setUsers] = useState(usersData)
 
-    const deleteUser = (name: string) => {
+    const deleteWorker = (name: string) => {
         const filteredUsers = users.filter((user) => user.name !== name)
         setUsers(filteredUsers)
     }
 
-    const handleAddUser = (values: IUsersList) => {
+    const handleAddWorker = (values: IUsersList) => {
         const newUser = {
             name: values.name,
             attendance: values.attendance,
@@ -41,14 +41,13 @@ const UsersProvider = ({ children }: IChildren) => {
         }
         setUsers([newUser, ...users])
     }
+
     return (
         <UsersContext.Provider
             value={{
-                users: [],
-                // eslint-disable-next-line @typescript-eslint/no-empty-function
-                handleAddUser: () => {},
-                // eslint-disable-next-line @typescript-eslint/no-empty-function
-                deleteUser: () => {},
+                users,
+                handleAddWorker,
+                deleteWorker,
             }}
         >
             {children}

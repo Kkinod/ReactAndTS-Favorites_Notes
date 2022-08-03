@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import FormField from '../components/molecules/FormField/FormField'
 import { Button } from '../components/atoms/Button/Button'
 import ViewWrapper from '../components/molecules/ViewWrapper/ViewWrapper'
@@ -13,7 +13,7 @@ const initialFormState = {
 
 const AddUser = () => {
     const [formValues, setFormValues] = useState(initialFormState)
-    const { handleAddUser } = useContext(UsersContext)
+    const { handleAddWorker } = useContext(UsersContext)
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormValues({
@@ -24,7 +24,7 @@ const AddUser = () => {
 
     const handleSubmitUser = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
-        handleAddUser(formValues)
+        handleAddWorker(formValues)
         setFormValues(initialFormState)
     }
 

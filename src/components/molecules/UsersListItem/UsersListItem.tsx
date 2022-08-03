@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import DeleteButton from '../../atoms/DeleteButton/DeleteButton'
 import Wrapper, { StyledAverage, StyledInfo } from './UsersListItem.styled'
+import { UsersContext } from '../../../providers/UsersProviders'
 
 interface IUsersList {
-    index: number
-    deleteWorker: (name: string) => void
+    deleteWorker?: (name: string) => void
     name: string
     attendance: string
     average: string
 }
 
-const UsersListItem = ({ deleteWorker, name, attendance = '0%', average }: IUsersList) => {
+const UsersListItem = ({ name, attendance = '0%', average }: IUsersList) => {
+    const { deleteWorker } = useContext(UsersContext)
+
     return (
         <Wrapper>
             <StyledAverage value={average}>{average}</StyledAverage>

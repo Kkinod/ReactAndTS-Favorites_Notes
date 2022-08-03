@@ -6,7 +6,7 @@ import Title from '../../atoms/Title/Title'
 
 interface IUsersListProps {
     users: IUsersList[]
-    deleteWorker: (name: string) => void
+    deleteWorker?: (name: string) => void
 }
 
 const UsersList = ({ users, deleteWorker }: IUsersListProps) => {
@@ -14,9 +14,8 @@ const UsersList = ({ users, deleteWorker }: IUsersListProps) => {
         <>
             <Title>Worker list</Title>
             <StyledList>
-                {users.map((userData, i) => (
+                {users.map((userData) => (
                     <UsersListItem
-                        index={i}
                         deleteWorker={deleteWorker}
                         key={userData.name}
                         name={userData.name}
