@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { users as usersData } from '../data/users'
 
-interface IChildren {
+export interface IChildren {
     children?: React.ReactNode
 }
 
