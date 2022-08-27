@@ -1,15 +1,12 @@
-import React, { useContext, useReducer } from 'react'
+import React, { useContext } from 'react'
 import FormField from '../components/molecules/FormField/FormField'
 import { Button } from '../components/atoms/Button/Button'
 import ViewWrapper from '../components/molecules/ViewWrapper/ViewWrapper'
 import Title from '../components/atoms/Title/Title'
 import { UsersContext } from '../providers/UsersProviders'
+import { useForm } from '../hooks/useForm'
 
-interface IState {
-    state: typeof initialFormState
-}
-
-const initialFormState = {
+export const initialFormState = {
     name: '',
     attendance: '',
     average: '',
@@ -17,61 +14,24 @@ const initialFormState = {
     error: '',
 }
 
-const actionTypes = {
-    inputChange: 'INPUT CHANGE',
-    clearValues: 'CLEAR VALUES',
-    consentToggle: 'CONSENT TOGGLE',
-    throwError: 'THROW ERROR',
-}
-
-// need type reducer
-// const reducer = (
-//     state: { name: string; attendance: string; average: string },
-//     action: { type: string; field?: string; value?: string },
-// ) => {
-const reducer = (state: any, action: any) => {
-    switch (action.type) {
-        case actionTypes.inputChange:
-            return {
-                ...state,
-                [action.field]: action.value,
-            }
-        case actionTypes.clearValues:
-            return initialFormState
-        case actionTypes.consentToggle:
-            return {
-                ...state,
-                consent: !state.consent,
-            }
-        case actionTypes.throwError:
-            return {
-                ...state,
-                error: action.errorValue,
-            }
-        default:
-            return state
-    }
-}
-
 const AddUser = () => {
-    const [formValues, dispatch] = useReducer(reducer, initialFormState)
+    // const [formValues, dispatch] = useReducer(reducer, initialFormState)
     const { handleAddWorker } = useContext(UsersContext)
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch({
-            type: 'INPUT CHANGE',
-            field: e.target.name,
-            value: e.target.value,
-        })
-    }
+    const {
+        formValues,
+        handleInputChange,
+        handleClearForm,
+        handleThrowError,
+        handleToggleConsent,
+    } = useForm(initialFormState)
 
     const handleSubmitUser = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (formValues.consent) {
             handleAddWorker(formValues)
-            dispatch({ type: 'CLEAR VALUES' })
+            handleClearForm(initialFormState)
         } else {
-            dispatch({ type: 'THROW ERROR', errorValue: 'You need to give consent' })
+            handleThrowError('You need to gice consent')
         }
     }
 
@@ -105,7 +65,7 @@ const AddUser = () => {
                 name='consent'
                 type='checkbox'
                 value={formValues.average}
-                onChange={() => dispatch({ type: 'CONSENT TOGGLE' })}
+                onChange={handleToggleConsent}
             />
             <Button type='submit'>Add</Button>
             {formValues.error ? <p>{formValues.error}</p> : null}
