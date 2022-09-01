@@ -12,6 +12,8 @@ export const Wrapper = styled.nav`
     border-right: 1px solid ${({ theme }: Theme) => theme.colors.darkPurple};
     justify-content: flex-start;
     padding: 30px 0;
+    grid-row: 1 / 3;
+    grid-column: 1 / 1;
 `
 
 export const Logo = styled.div`
