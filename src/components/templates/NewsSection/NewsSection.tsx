@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Button from '../../../atoms/Button/Button'
+import Button from '../../atoms/Button/Button'
 import {
     ArticleWrapper,
     ContentWrapper,
@@ -9,13 +9,12 @@ import {
     Wrapper,
 } from './NewsSection.styles'
 
-const API_TOKEN = 'f5a151caac91fd240d28ad1af95480'
-
 const NewsSection = () => {
     const [articles, setArticles] = useState([])
     const [error, setError] = useState('')
 
     useEffect(() => {
+        console.log(process.env.REACT_APP_DATOCMS_TOKEN)
         axios
             .post(
                 'https://graphql.datocms.com/',
@@ -36,7 +35,7 @@ const NewsSection = () => {
                 },
                 {
                     headers: {
-                        authorization: `Bearer ${API_TOKEN}`,
+                        authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
                     },
                 },
             )
@@ -46,7 +45,7 @@ const NewsSection = () => {
             .catch(() => {
                 setError('Sorry, we couldn\'t load articles for you')
             })
-    })
+    }, [])
 
     interface IArticles {
         title: string
@@ -75,9 +74,8 @@ const NewsSection = () => {
                     </ArticleWrapper>
                 ))
             ) : (
-                <NewsSectionHeader>Loading...</NewsSectionHeader>
+                <NewsSectionHeader>{error ? error : 'Loading...'}</NewsSectionHeader>
             )}
-            {error ? <NewsSectionHeader>{error}</NewsSectionHeader> : null}
         </Wrapper>
     )
 }

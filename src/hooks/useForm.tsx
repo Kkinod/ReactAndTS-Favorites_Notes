@@ -8,13 +8,6 @@ interface IReducerState {
     error: string
 }
 
-interface IReducerAction {
-    inputChange: string
-    clearValues: string
-    consentToggle: string
-    throwError: string
-}
-
 interface CounterAction {
     type: string
     field: string

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Theme } from '../../../../assets/styles/theme'
-import ViewWrapper from '../../../molecules/ViewWrapper/ViewWrapper'
+import { Theme } from '../../../assets/styles/theme'
+import ViewWrapper from '../../molecules/ViewWrapper/ViewWrapper'
 
 export const Wrapper = styled.div`
     grid-row: 1 / 3;
