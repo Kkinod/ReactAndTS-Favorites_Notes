@@ -9,29 +9,30 @@ import {
     Wrapper,
 } from './NewsSection.styles'
 
+export const query = `
+         {
+          allArticles {
+            id
+            title
+            category
+            content
+            image {
+              url
+            }
+          }
+        }
+      `
+
 const NewsSection = () => {
     const [articles, setArticles] = useState([])
     const [error, setError] = useState('')
 
     useEffect(() => {
-        console.log(process.env.REACT_APP_DATOCMS_TOKEN)
         axios
             .post(
                 'https://graphql.datocms.com/',
                 {
-                    query: `
-                {
-                 allArticles {
-                     id
-                     title
-                     category
-                     content
-                     image {
-                       url
-                      }
-                     }
-                    }
-                `,
+                    query,
                 },
                 {
                     headers: {
@@ -48,6 +49,7 @@ const NewsSection = () => {
     }, [])
 
     interface IArticles {
+        id: string
         title: string
         category: string
         content: string
@@ -60,8 +62,8 @@ const NewsSection = () => {
         <Wrapper>
             <NewsSectionHeader>News feed section</NewsSectionHeader>
             {articles.length > 0 ? (
-                articles.map(({ title, category, content, image }: IArticles) => (
-                    <ArticleWrapper key={title}>
+                articles.map(({ id, title, category, content, image }: IArticles) => (
+                    <ArticleWrapper key={id}>
                         <TitleWrapper>
                             <h3>{title}</h3>
                             <p>{category}</p>
