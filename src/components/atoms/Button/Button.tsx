@@ -5,16 +5,16 @@ export interface Theme {
     theme: typeof theme
 }
 
-interface IsBig {
+interface IIsBig {
     isBig?: boolean
 }
 
-type IsBigAndTheme = IsBig & Theme
+type TIsBigAndTheme = IIsBig & Theme
 
 export const Button = styled.button`
     margin: 15px 0;
-    padding: ${({ isBig }: IsBig) => (isBig ? '10px 38px' : '7px 20px')};
-    font-size: ${({ isBig, theme }: IsBigAndTheme) =>
+    padding: ${({ isBig }: IIsBig) => (isBig ? '10px 38px' : '7px 20px')};
+    font-size: ${({ isBig, theme }: TIsBigAndTheme) =>
         isBig ? theme.fontSize.m : theme.fontSize.s};
     background-color: ${({ theme }: Theme) => theme.colors.lightPurple};
     border-radius: 20px;

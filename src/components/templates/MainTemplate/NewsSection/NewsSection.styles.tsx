@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     padding: 50px;
+    overflow-y: scroll;
 `
 
 export const NewsSectionHeader = styled.h2`
@@ -24,6 +25,10 @@ export const ArticleWrapper = styled(ViewWrapper)`
     max-width: unset;
     border-radius: 12px;
     color: ${({ theme }: Theme) => theme.colors.darkGrey};
+
+    p {
+        line-height: 1.6;
+    }
 `
 
 export const TitleWrapper = styled.div`
@@ -34,5 +39,15 @@ export const TitleWrapper = styled.div`
 
     p {
         font-size: ${({ theme }: Theme) => theme.fontSize.m};
+    }
+`
+
+export const ContentWrapper = styled.div`
+    display: flex;
+
+    img {
+        margin-left: 35px;
+        max-width: 200px;
+        object-fit: cover;
     }
 `
