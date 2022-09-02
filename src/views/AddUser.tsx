@@ -15,7 +15,6 @@ export const initialFormState = {
 }
 
 const AddUser = () => {
-    // const [formValues, dispatch] = useReducer(reducer, initialFormState)
     const { handleAddWorker } = useContext(UsersContext)
     const {
         formValues,
