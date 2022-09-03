@@ -4,6 +4,7 @@ A project created as part of developing my own programming skills in:
 - TypeScript!
 - Tests!
 
+Additionally:
 - project configuration: eslint, prettier, husky, lint-staged
 - how to use and work with styled components
 - how to use the Atomic Design methodology in a project
