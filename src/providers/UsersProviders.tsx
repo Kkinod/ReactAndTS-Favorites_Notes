@@ -1,23 +1,24 @@
-import React, { useState } from 'react'
-import { users as usersData } from '../data/users'
-
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 export interface IChildren {
     children?: React.ReactNode
 }
 
 export interface IUsersList {
+    id?: string
     name: string
     attendance: string
     average: string
+    group?: string
 }
 
-interface Context {
+interface IContext {
     users: IUsersList[]
     handleAddWorker: (p: IUsersList) => void
     deleteWorker: (p: string) => void
 }
 
-export const UsersContext = React.createContext<Context>({
+export const UsersContext = React.createContext<IContext>({
     users: [],
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     handleAddWorker: () => {},
@@ -26,7 +27,14 @@ export const UsersContext = React.createContext<Context>({
 })
 
 const UsersProvider = ({ children }: IChildren) => {
-    const [users, setUsers] = useState(usersData)
+    const [users, setUsers] = useState<IUsersList[]>([])
+
+    useEffect(() => {
+        axios
+            .get('/students')
+            .then(({ data }) => setUsers(data.students))
+            .catch((err) => console.log(err))
+    }, [])
 
     const deleteWorker = (name: string) => {
         const filteredUsers = users.filter((user) => user.name !== name)
