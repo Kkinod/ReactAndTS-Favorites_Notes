@@ -5,11 +5,12 @@ import StyledList from './UsersList.styled'
 import Title from '../../atoms/Title/Title'
 
 interface IUsersListProps {
-    users: IUsersList[]
+    users?: IUsersList[]
     deleteWorker?: (name: string) => void
 }
 
-const UsersList = ({ users, deleteWorker }: IUsersListProps) => {
+// const UsersList = ({ users, deleteWorker }: IUsersListProps) => {
+const UsersList = ({ users = [], deleteWorker }: IUsersListProps) => {
     return (
         <>
             <Title>Worker list</Title>
