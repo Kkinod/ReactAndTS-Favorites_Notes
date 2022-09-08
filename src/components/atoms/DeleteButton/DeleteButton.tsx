@@ -3,7 +3,7 @@ import { ReactComponent as DeleteIcon } from '../../../assets/icons/delete-icon.
 import StyledButton from './DeleteButton.styled'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    onClick: () => void
+    onClick?: () => void
 }
 
 const DeleteButton = (props: ButtonProps) => {

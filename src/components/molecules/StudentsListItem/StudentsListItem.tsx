@@ -4,14 +4,17 @@ import Wrapper, { StyledAverage, StyledInfo } from './StudentsListItem.styled'
 import { UsersContext } from '../../../providers/UsersProviders'
 
 interface IUsersList {
-    deleteWorker?: (name: string) => void
-    name: string
-    attendance: string
-    average: string
+    userData: {
+        deleteWorker?: (name: string) => void
+        name: string
+        attendance: string
+        average: string
+    }
 }
 
-const UsersListItem = ({ name, attendance = '0%', average }: IUsersList) => {
-    const { deleteWorker } = useContext(UsersContext)
+// const UsersListItem = ({ name, attendance = '0%', average }: IUsersList) => {
+const StudentsListItem = ({ userData: { average, name, attendance = '0%' } }: IUsersList) => {
+    // const { deleteWorker } = useContext(UsersContext)
 
     return (
         <Wrapper>
@@ -19,7 +22,7 @@ const UsersListItem = ({ name, attendance = '0%', average }: IUsersList) => {
             <StyledInfo>
                 <p>
                     {name}
-                    <DeleteButton onClick={() => deleteWorker(name)} />
+                    <DeleteButton />
                 </p>
                 <p>attendance: {attendance}</p>
             </StyledInfo>
@@ -27,4 +30,4 @@ const UsersListItem = ({ name, attendance = '0%', average }: IUsersList) => {
     )
 }
 
-export default UsersListItem
+export default StudentsListItem

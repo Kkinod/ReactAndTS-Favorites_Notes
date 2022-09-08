@@ -23,7 +23,7 @@ const App = () => {
                     <Wrapper>
                         <Routes>
                             <Route path='/' element={<Navigate replace to='/group' />} />
-                            <Route path='/group/:id?' element={<Dashboard />} />
+                            <Route path='/group/:id' element={<Dashboard />} />
                         </Routes>
                     </Wrapper>
                 </MainTemplate>
