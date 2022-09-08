@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import debounce from 'lodash.debounce'
 import { useCombobox } from 'downshift'
 import { useStudents } from '../../../hooks/useStudents'
@@ -9,15 +9,11 @@ import {
     SearchResults,
     SearchWrapper,
     StatusInfo,
-} from './SearchBard.styles'
+} from './SearchBar.styles'
 
 export const SearchBar = () => {
     const [matchingStudents, setMatchingStudents] = useState([])
     const { findStudents } = useStudents()
-
-    interface IInputValue {
-        inputValue: string
-    }
 
     const getMatchingStudents = debounce(async ({ inputValue }) => {
         const { students } = await findStudents(inputValue)
@@ -26,14 +22,11 @@ export const SearchBar = () => {
 
     const {
         isOpen,
-        getToggleButtonProps,
-        getLabelProps,
         getMenuProps,
         getInputProps,
         getComboboxProps,
         highlightedIndex,
         getItemProps,
-        selectedItem,
     } = useCombobox({
         items: matchingStudents,
         onInputValueChange: getMatchingStudents,

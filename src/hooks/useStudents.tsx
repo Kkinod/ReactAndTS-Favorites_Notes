@@ -10,7 +10,7 @@ export const useStudents = () => {
             console.log(e)
         }
     }, [])
-    // ANY TYPE!!
+    // ANY TYPE
     const getStudents = useCallback(async (groupId: any) => {
         try {
             const result = await axios.get(`/students/${groupId}`)
@@ -19,9 +19,8 @@ export const useStudents = () => {
             console.log(e)
         }
     }, [])
-
-    // ANY TYPE!!
-    const findStudents = async (searchPhrase: string) => {
+    // ANY TYPE
+    const findStudents = async (searchPhrase: any) => {
         try {
             const { data } = await axios.post('/students/search', {
                 searchPhrase,
