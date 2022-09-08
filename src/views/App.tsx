@@ -22,9 +22,8 @@ const App = () => {
                 <MainTemplate>
                     <Wrapper>
                         <Routes>
-                            <Route path='/add-user' element={<AddUser />} />
+                            <Route path='/' element={<Navigate replace to='/group' />} />
                             <Route path='/group/:id' element={<Dashboard />} />
-                            <Route path='*' element={<Navigate replace to='/group' />} />
                         </Routes>
                     </Wrapper>
                 </MainTemplate>
