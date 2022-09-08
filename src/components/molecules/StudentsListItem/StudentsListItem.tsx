@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import DeleteButton from '../../atoms/DeleteButton/DeleteButton'
-import Wrapper, { StyledAverage, StyledInfo } from './UsersListItem.styled'
+import Wrapper, { StyledAverage, StyledInfo } from './StudentsListItem.styled'
 import { UsersContext } from '../../../providers/UsersProviders'
 
 interface IUsersList {
