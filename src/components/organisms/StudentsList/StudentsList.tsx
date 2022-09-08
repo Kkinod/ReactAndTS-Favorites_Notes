@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Title from '../../atoms/Title/Title'
 import StudentsListItem from '../../molecules/StudentsListItem/StudentsListItem'
@@ -13,8 +13,16 @@ interface IUsersListProps {
 
 // const UsersList = ({ users = [], deleteWorker }: IUsersListProps) => {
 const UsersList = () => {
+    const [students, setStudents] = useState([])
     const { id } = useParams()
-    const { students } = useStudents({ groupId: id })
+    const { getStudents } = useStudents()
+
+    useEffect(() => {
+        ;(async () => {
+            const groups = await getStudents(id)
+            setStudents(students)
+        })()
+    }, [getStudents, id])
 
     // ANY TYPE
     return (

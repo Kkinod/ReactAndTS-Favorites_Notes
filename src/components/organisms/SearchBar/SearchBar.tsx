@@ -1,24 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import debounce from 'lodash.debounce'
+import { useCombobox } from 'downshift'
 import { useStudents } from '../../../hooks/useStudents'
 import { Input } from '../../atoms/Input/Input'
-import { SearchBarWrapper, SearchResults, SearchWrapper, StatusInfo } from './SearchBard.styles'
+import {
+    SearchResultsItem,
+    SearchBarWrapper,
+    SearchResults,
+    SearchWrapper,
+    StatusInfo,
+} from './SearchBard.styles'
 
 export const SearchBar = () => {
-    const [searchPhrase, setSearchPhrase] = useState('')
     const [matchingStudents, setMatchingStudents] = useState([])
     const { findStudents } = useStudents()
 
-    // ANY TYPE!!!!!
-    const getMatchingStudents = debounce(async (e: any) => {
-        const { students } = await findStudents(searchPhrase)
+    interface IInputValue {
+        inputValue: string
+    }
+
+    const getMatchingStudents = debounce(async ({ inputValue }) => {
+        const { students } = await findStudents(inputValue)
         setMatchingStudents(students)
     }, 500)
 
-    useEffect(() => {
-        if (!searchPhrase) return
-        getMatchingStudents(searchPhrase)
-    }, [searchPhrase, getMatchingStudents])
+    const {
+        isOpen,
+        getToggleButtonProps,
+        getLabelProps,
+        getMenuProps,
+        getInputProps,
+        getComboboxProps,
+        highlightedIndex,
+        getItemProps,
+        selectedItem,
+    } = useCombobox({
+        items: matchingStudents,
+        onInputValueChange: getMatchingStudents,
+    })
 
     // ANY TYPE!!!!!
     return (
@@ -29,20 +48,23 @@ export const SearchBar = () => {
                     <strong>Teacher</strong>
                 </p>
             </StatusInfo>
-            <SearchWrapper>
-                <Input
-                    onChange={(e) => setSearchPhrase(e.target.value)}
-                    value={searchPhrase}
-                    name='Search'
-                    id='Search'
-                />
-                {searchPhrase && matchingStudents.length ? (
-                    <SearchResults>
-                        {matchingStudents.map((student: any) => (
-                            <li key={student.id}>{student.name}</li>
+            <SearchWrapper {...getComboboxProps()}>
+                <Input {...getInputProps()} name='Search' id='Search' placeholder='Search' />
+                <SearchResults
+                    isVisible={isOpen && matchingStudents.length > 0}
+                    {...getMenuProps()}
+                >
+                    {isOpen &&
+                        matchingStudents.map((item: any, index) => (
+                            <SearchResultsItem
+                                isHighlighted={highlightedIndex === index}
+                                {...getItemProps({ item, index } as any)}
+                                key={item.id}
+                            >
+                                {item.name}
+                            </SearchResultsItem>
                         ))}
-                    </SearchResults>
-                ) : null}
+                </SearchResults>
             </SearchWrapper>
         </SearchBarWrapper>
     )

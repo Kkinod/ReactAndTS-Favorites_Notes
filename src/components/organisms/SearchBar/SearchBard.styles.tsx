@@ -1,6 +1,10 @@
 import styled from 'styled-components'
-import { Theme } from '../../../assets/styles/theme'
+import theme, { Theme } from '../../../assets/styles/theme'
 import { Input } from '../../atoms/Input/Input'
+interface IThemeAndIsHighlighted {
+    isHighlighted: boolean
+    theme: typeof theme
+}
 
 export const SearchBarWrapper = styled.div`
     grid-row: 1 / 2;
@@ -33,6 +37,7 @@ export const SearchWrapper = styled.div`
 `
 
 export const SearchResults = styled.ul`
+    visibility: ${({ isVisible }: { isVisible: boolean }) => (isVisible ? 'visible' : 'hidden')};
     z-index: 1000;
     max-height: 500px;
     overflow-y: scroll;
@@ -46,18 +51,20 @@ export const SearchResults = styled.ul`
     display: flex;
     flex-direction: column;
     background-color: ${({ theme }: Theme) => theme.colors.white};
-    li {
-        font-weight: bold;
-        color: ${({ theme }: Theme) => theme.colors.darkGrey};
-        background-color: ${({ theme }: Theme) => theme.colors.white};
-        width: 100%;
-        padding: 20px 5px;
-    }
-    li:hover,
-    li:focus {
+`
+export const SearchResultsItem = styled.li`
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.darkGrey};
+    background-color: ${({ theme, isHighlighted }: IThemeAndIsHighlighted) =>
+        isHighlighted ? theme.colors.lightPurple : theme.colors.white};
+    width: 100%;
+    padding: 20px 5px;
+
+    &:hover {
         background-color: ${({ theme }: Theme) => theme.colors.lightPurple};
     }
-    li:not(:last-child) {
+
+    &:not(:last-child) {
         border-bottom: 1px solid ${({ theme }: Theme) => theme.colors.darkPurple};
     }
 `
