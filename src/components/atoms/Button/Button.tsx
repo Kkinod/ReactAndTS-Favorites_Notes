@@ -5,7 +5,7 @@ export interface Theme {
     theme: typeof theme
 }
 
-interface IIsBig {
+export interface IIsBig {
     isBig?: boolean
 }
 
