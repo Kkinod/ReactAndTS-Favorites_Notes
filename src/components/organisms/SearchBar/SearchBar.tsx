@@ -15,11 +15,18 @@ export const SearchBar = () => {
     const [matchingStudents, setMatchingStudents] = useState([])
     const { findStudents } = useStudents()
 
+    // BŁĄD Z WYŚWIETLANIE LISTY, zwrot z axiosa 404
     const getMatchingStudents = debounce(async ({ inputValue }) => {
+        console.log(`INPUT: ${inputValue}`)
+
+        const abc = await findStudents(inputValue)
+        // console.log(`'abc' ${abc}`)
+
         const { students } = await findStudents(inputValue)
         setMatchingStudents(students)
     }, 500)
 
+    // ANY TYPE !!!!
     const {
         isOpen,
         getMenuProps,
@@ -30,6 +37,7 @@ export const SearchBar = () => {
     } = useCombobox({
         items: matchingStudents,
         onInputValueChange: getMatchingStudents,
+        itemToString: (item: any) => (item ? item.name : ''),
     })
 
     // ANY TYPE!!!!!
@@ -46,6 +54,7 @@ export const SearchBar = () => {
                 <SearchResults
                     isVisible={isOpen && matchingStudents.length > 0}
                     {...getMenuProps()}
+                    aria-label='results'
                 >
                     {isOpen &&
                         matchingStudents.map((item: any, index) => (
