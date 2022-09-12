@@ -1,24 +1,44 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import debounce from 'lodash.debounce'
+import { useCombobox } from 'downshift'
 import { useStudents } from '../../../hooks/useStudents'
 import { Input } from '../../atoms/Input/Input'
-import { SearchBarWrapper, SearchResults, SearchWrapper, StatusInfo } from './SearchBard.styles'
+import {
+    SearchResultsItem,
+    SearchBarWrapper,
+    SearchResults,
+    SearchWrapper,
+    StatusInfo,
+} from './SearchBar.styles'
 
 export const SearchBar = () => {
-    const [searchPhrase, setSearchPhrase] = useState('')
     const [matchingStudents, setMatchingStudents] = useState([])
     const { findStudents } = useStudents()
 
-    // ANY TYPE!!!!!
-    const getMatchingStudents = debounce(async (e: any) => {
-        const { students } = await findStudents(searchPhrase)
+    // BŁĄD Z WYŚWIETLANIE LISTY, zwrot z axiosa 404
+    const getMatchingStudents = debounce(async ({ inputValue }) => {
+        console.log(`INPUT: ${inputValue}`)
+
+        const abc = await findStudents(inputValue)
+        // console.log(`'abc' ${abc}`)
+
+        const { students } = await findStudents(inputValue)
         setMatchingStudents(students)
     }, 500)
 
-    useEffect(() => {
-        if (!searchPhrase) return
-        getMatchingStudents(searchPhrase)
-    }, [searchPhrase, getMatchingStudents])
+    // ANY TYPE !!!!
+    const {
+        isOpen,
+        getMenuProps,
+        getInputProps,
+        getComboboxProps,
+        highlightedIndex,
+        getItemProps,
+    } = useCombobox({
+        items: matchingStudents,
+        onInputValueChange: getMatchingStudents,
+        itemToString: (item: any) => (item ? item.name : ''),
+    })
 
     // ANY TYPE!!!!!
     return (
@@ -29,20 +49,24 @@ export const SearchBar = () => {
                     <strong>Teacher</strong>
                 </p>
             </StatusInfo>
-            <SearchWrapper>
-                <Input
-                    onChange={(e) => setSearchPhrase(e.target.value)}
-                    value={searchPhrase}
-                    name='Search'
-                    id='Search'
-                />
-                {searchPhrase && matchingStudents.length ? (
-                    <SearchResults>
-                        {matchingStudents.map((student: any) => (
-                            <li key={student.id}>{student.name}</li>
+            <SearchWrapper {...getComboboxProps()}>
+                <Input {...getInputProps()} name='Search' id='Search' placeholder='Search' />
+                <SearchResults
+                    isVisible={isOpen && matchingStudents.length > 0}
+                    {...getMenuProps()}
+                    aria-label='results'
+                >
+                    {isOpen &&
+                        matchingStudents.map((item: any, index) => (
+                            <SearchResultsItem
+                                isHighlighted={highlightedIndex === index}
+                                {...getItemProps({ item, index } as any)}
+                                key={item.id}
+                            >
+                                {item.name}
+                            </SearchResultsItem>
                         ))}
-                    </SearchResults>
-                ) : null}
+                </SearchResults>
             </SearchWrapper>
         </SearchBarWrapper>
     )

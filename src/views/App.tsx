@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
-import AddUser from './AddUser'
 import Dashboard from './Dashboard'
 import MainTemplate from '../components/templates/MainTemplate/MainTemplate'
 import Wrapper from './App.styles'
