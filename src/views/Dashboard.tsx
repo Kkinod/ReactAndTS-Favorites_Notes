@@ -6,7 +6,7 @@ import Title from '../components/atoms/Title/Title'
 import useModal from '../components/organisms/Modal/useModal'
 import { GroupWrapper, TitleWrapper, Wrapper } from '../views/Dashboard.styles'
 import { IUsersList } from '../mocks/handlers/index'
-import { StyledAverage } from '../components/molecules/StudentsListItem/StudentsListItem.styled'
+import StudentDetails from '../components/molecules/StudentDetails/StudentDetails'
 
 const Dashboard = () => {
     const [groups, setGroups] = useState([])
@@ -47,11 +47,7 @@ const Dashboard = () => {
                 <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
                 {isOpen ? (
                     <Modal handleClose={handleCloseModal}>
-                        <Title>{currentStudent?.name}</Title>
-                        <p>{currentStudent?.attendance}</p>
-                        <StyledAverage value={currentStudent?.average as number}>
-                            {currentStudent?.average}
-                        </StyledAverage>
+                        <StudentDetails student={currentStudent}></StudentDetails>
                     </Modal>
                 ) : null}
             </GroupWrapper>
