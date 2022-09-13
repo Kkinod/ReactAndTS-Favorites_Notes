@@ -5,11 +5,13 @@ import StudentsList from '../components/organisms/StudentsList/StudentsList'
 import Title from '../components/atoms/Title/Title'
 import useModal from '../components/organisms/Modal/useModal'
 import { GroupWrapper, TitleWrapper, Wrapper } from '../views/Dashboard.styles'
+import { IUsersList } from '../mocks/handlers/index'
+import { StyledAverage } from '../components/molecules/StudentsListItem/StudentsListItem.styled'
 
 const Dashboard = () => {
     const [groups, setGroups] = useState([])
-    const [currentStudent, setCurrentStudent] = useState([])
-    const { getGroups } = useStudents()
+    const [currentStudent, setCurrentStudent] = useState<IUsersList>()
+    const { getGroups, getStudentById } = useStudents()
     const { id } = useParams()
     const { Modal, isOpen, handleOpenModal, handleCloseModal } = useModal()
 
@@ -20,8 +22,9 @@ const Dashboard = () => {
         })()
     }, [getGroups])
 
-    const handleOpenStudentDetails = (id: any) => {
-        setCurrentStudent(id)
+    const handleOpenStudentDetails = async (id: any) => {
+        const student = await getStudentById(id)
+        setCurrentStudent(student)
         handleOpenModal()
     }
 
@@ -42,7 +45,15 @@ const Dashboard = () => {
             </TitleWrapper>
             <GroupWrapper>
                 <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
-                {isOpen ? <Modal handleClose={handleCloseModal}>{currentStudent}</Modal> : null}
+                {isOpen ? (
+                    <Modal handleClose={handleCloseModal}>
+                        <Title>{currentStudent?.name}</Title>
+                        <p>{currentStudent?.attendance}</p>
+                        <StyledAverage value={currentStudent?.average as number}>
+                            {currentStudent?.average}
+                        </StyledAverage>
+                    </Modal>
+                ) : null}
             </GroupWrapper>
         </Wrapper>
     )

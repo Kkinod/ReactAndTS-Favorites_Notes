@@ -10,6 +10,16 @@ export const useStudents = () => {
             console.log(e)
         }
     }, [])
+
+    const getStudentById = useCallback(async (studentId: string) => {
+        try {
+            const result = await axios.get(`/students/${studentId}`)
+            return result.data.students
+        } catch (e) {
+            console.log(e)
+        }
+    }, [])
+
     // ANY TYPE
     const getStudentsByGroup = useCallback(async (groupId: any) => {
         try {
@@ -19,7 +29,7 @@ export const useStudents = () => {
             console.log(e)
         }
     }, [])
-    // ANY TYPE
+
     const findStudents = async (searchPhrase: string) => {
         try {
             const { data } = await axios.post('/students/search', {
@@ -35,5 +45,6 @@ export const useStudents = () => {
         getGroups,
         getStudentsByGroup,
         findStudents,
+        getStudentById,
     }
 }

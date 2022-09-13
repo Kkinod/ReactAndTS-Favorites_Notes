@@ -6,7 +6,7 @@ export interface IUsersList {
     id: string
     name: string
     attendance: string
-    average: string
+    average: string | number
     group: string
 }
 
