@@ -17,14 +17,14 @@ interface IUsersListProps {
 const StudentsList = ({ handleOpenStudentDetails }: { handleOpenStudentDetails: any }) => {
     const [students, setStudents] = useState([])
     const { id } = useParams()
-    const { getStudents } = useStudents()
+    const { getStudentsByGroup } = useStudents()
 
     useEffect(() => {
         ;(async () => {
-            const students = await getStudents(id)
+            const students = await getStudentsByGroup(id)
             setStudents(students)
         })()
-    }, [getStudents, id])
+    }, [getStudentsByGroup, id])
 
     return (
         <>
