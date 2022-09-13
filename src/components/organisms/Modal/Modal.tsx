@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import Button from '../../atoms/Button/Button'
 import ModalWrapper from './Modal.styles'
@@ -6,11 +6,12 @@ import ModalWrapper from './Modal.styles'
 // ANY TYPE
 interface IModal {
     handleClose: () => void
+    children: ReactNode
 }
 
 const modalContainer = document.getElementById('modal-container') as HTMLElement
 
-const Modal = ({ handleClose }: IModal) => {
+const Modal = ({ handleClose, children }: IModal) => {
     const modalNode = document.createElement('div')
 
     useEffect(() => {
@@ -23,7 +24,8 @@ const Modal = ({ handleClose }: IModal) => {
 
     return ReactDOM.createPortal(
         <ModalWrapper>
-            Modal<Button onClick={handleClose}>Close modal</Button>
+            {children}
+            <Button onClick={handleClose}>Close modal</Button>
         </ModalWrapper>,
         modalNode,
     )

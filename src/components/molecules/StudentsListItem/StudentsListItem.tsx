@@ -8,12 +8,16 @@ interface IUsersList {
         attendance: string
         average: string
     }
+    onClick?: () => void
 }
 
 // const UsersListItem = ({ name, attendance = '0%', average }: IUsersList) => {
-const StudentsListItem = ({ userData: { average, name, attendance = '0%' } }: IUsersList) => {
+const StudentsListItem = ({
+    userData: { average, name, attendance = '0%' },
+    ...props
+}: IUsersList) => {
     return (
-        <Wrapper>
+        <Wrapper {...props}>
             <StyledAverage value={average}>{average}</StyledAverage>
             <StyledInfo>
                 <p>
