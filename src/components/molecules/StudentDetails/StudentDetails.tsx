@@ -1,19 +1,38 @@
 import React from 'react'
-import { StyledAverage } from '../StudentsListItem/StudentsListItem.styled'
 import Title from '../../atoms/Title/Title'
 import { IUsersList } from '../../../mocks/handlers/index'
+import { Average } from '../../atoms/Average/Average'
+import {
+    BigAverage,
+    StyledDetails,
+    StyledInfo,
+    StyledLabel,
+    StyledSubjectInfo,
+    Wrapper,
+} from '../../molecules/StudentDetails/StudentDetails.styles'
 
 interface IStudent {
-    student?: IUsersList
+    student: IUsersList
 }
 
 const StudentDetails = ({ student }: IStudent) => {
     return (
-        <div>
+        <Wrapper>
+            <BigAverage value={student?.average as number}>{student?.average}</BigAverage>
+            {/* <Title isBig>{student.name}</Title> */}
             <Title>{student?.name}</Title>
-            <p>{student?.attendance}</p>
-            <StyledAverage value={student?.average as number}>{student?.average}</StyledAverage>
-        </div>
+            <StyledDetails>
+                <StyledLabel>Course:</StyledLabel>
+                <StyledInfo isBig={true}>{student?.course}</StyledInfo>
+                <StyledLabel>Average grades:</StyledLabel>
+                {student?.grades?.map(({ subject, average }) => (
+                    <StyledSubjectInfo key={subject}>
+                        <StyledInfo isBig={false}>{subject}</StyledInfo>
+                        <Average value={average}>{average}</Average>
+                    </StyledSubjectInfo>
+                ))}
+            </StyledDetails>
+        </Wrapper>
     )
 }
 

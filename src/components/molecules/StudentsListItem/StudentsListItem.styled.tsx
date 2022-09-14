@@ -1,10 +1,5 @@
 import styled from 'styled-components'
-import theme, { Theme } from '../../../assets/styles/theme'
-
-interface ThemeAndValue {
-    theme: typeof theme
-    value: string | number
-}
+import { ITheme } from '../../../assets/styles/theme'
 
 const Wrapper = styled.li`
     display: flex;
@@ -22,41 +17,23 @@ const Wrapper = styled.li`
     }
 `
 
-export const StyledAverage = styled.div`
-    width: 35px;
-    height: 35px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: ${({ theme }: Theme) => theme.fontSize.s};
-    color: ${({ theme }: Theme) => theme.colors.white};
-    font-weight: bold;
-    background: ${({ theme, value }: ThemeAndValue) => {
-        if (value > 4) return theme.colors.success
-        if (value > 3) return theme.colors.warning
-        if (value > 1) return theme.colors.error
-        return theme.colors.grey
-    }};
-`
-
 export const StyledInfo = styled.div`
     padding: 25px 20px;
 
     p {
         margin: 0;
-        color: ${({ theme }: Theme) => theme.colors.darkGrey};
+        color: ${({ theme }: ITheme) => theme.colors.darkGrey};
     }
 
     p:first-child {
         display: flex;
         align-items: center;
         font-weight: bold;
-        font-size: ${({ theme }: Theme) => theme.fontSize.l};
+        font-size: ${({ theme }: ITheme) => theme.fontSize.l};
     }
 
     p:last-child {
-        font-size: ${({ theme }: Theme) => theme.fontSize.m};
+        font-size: ${({ theme }: ITheme) => theme.fontSize.m};
     }
 `
 

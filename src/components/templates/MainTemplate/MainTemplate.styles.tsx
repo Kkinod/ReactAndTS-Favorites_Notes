@@ -1,4 +1,4 @@
-import { Theme } from '../../../assets/styles/theme'
+import { ITheme } from '../../../assets/styles/theme'
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
@@ -10,6 +10,6 @@ export const Wrapper = styled.div`
     display: grid;
     grid-template-rows: 90px 1fr;
     grid-template-columns: 150px 1fr 0.75fr;
-    background-color: ${({ theme }: Theme) => theme.colors.lightGrey};
+    background-color: ${({ theme }: ITheme) => theme.colors.lightGrey};
     overflow-y: hidden;
 `

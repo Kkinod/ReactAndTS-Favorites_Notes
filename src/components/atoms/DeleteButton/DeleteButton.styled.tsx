@@ -1,10 +1,10 @@
-import { Theme } from '../../../assets/styles/theme'
+import { ITheme } from '../../../assets/styles/theme'
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
     width: 25px;
     height: 25px;
-    background-color: ${({ theme }: Theme) => theme.colors.grey};
+    background-color: ${({ theme }: ITheme) => theme.colors.grey};
     border-radius: 50px;
     border: none;
     color: white;
