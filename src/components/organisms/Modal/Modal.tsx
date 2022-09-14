@@ -1,33 +1,23 @@
-import React, { ReactNode, useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import React, { ReactNode } from 'react'
 import Button from '../../atoms/Button/Button'
 import ModalWrapper from './Modal.styles'
 
-// ANY TYPE
 interface IModal {
     handleClose: () => void
+    isOpen: boolean
     children: ReactNode
 }
 
-const modalContainer = document.getElementById('modal-container') as HTMLElement
-
-const Modal = ({ handleClose, children }: IModal) => {
-    const modalNode = document.createElement('div')
-
-    useEffect(() => {
-        modalContainer.appendChild(modalNode)
-
-        return () => {
-            modalContainer.removeChild(modalNode)
-        }
-    }, [modalNode])
-
-    return ReactDOM.createPortal(
-        <ModalWrapper>
+const Modal = ({ handleClose, isOpen, children }: IModal) => {
+    return (
+        <ModalWrapper
+            appElement={document.getElementById('root') as HTMLElement}
+            isOpen={isOpen}
+            onRequestClose={handleClose}
+        >
             {children}
-            <Button onClick={handleClose}>Close modal</Button>
-        </ModalWrapper>,
-        modalNode,
+            <Button onClick={handleClose}>Close</Button>
+        </ModalWrapper>
     )
 }
 

@@ -1,5 +1,14 @@
-export interface Theme {
+export interface ITheme {
     theme: typeof theme
+}
+
+export interface IThemeAndIsBig {
+    theme: typeof theme
+    isBig: boolean
+}
+
+export interface IIsBig {
+    isBig?: boolean
 }
 
 const theme = {

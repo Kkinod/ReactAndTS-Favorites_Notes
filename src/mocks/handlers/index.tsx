@@ -8,6 +8,11 @@ export interface IUsersList {
     attendance: string
     average: string | number
     group: string
+    course?: string
+    grades?: {
+        subject: string
+        average: string
+    }[]
 }
 
 export const handlers = [

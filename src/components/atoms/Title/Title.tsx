@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { Theme } from '../Button/Button'
+import { ITheme } from '../../../assets/styles/theme'
 
 const Title = styled.h1`
-    font-size: ${({ theme }: Theme) => theme.fontSize.xl};
-    color: ${({ theme }: Theme) => theme.colors.darkGrey};
+    font-size: ${({ theme }: ITheme) => theme.fontSize.xl};
+    color: ${({ theme }: ITheme) => theme.colors.darkGrey};
 `
 
 export default Title

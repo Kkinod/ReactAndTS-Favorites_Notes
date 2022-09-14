@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import theme, { Theme } from '../../../assets/styles/theme'
+import theme, { ITheme } from '../../../assets/styles/theme'
 import { Input } from '../../atoms/Input/Input'
 interface IThemeAndIsHighlighted {
     isHighlighted: boolean
@@ -9,23 +9,23 @@ interface IThemeAndIsHighlighted {
 export const SearchBarWrapper = styled.div`
     grid-row: 1 / 2;
     grid-column: 2 / 3;
-    border-bottom: 1px solid ${({ theme }: Theme) => theme.colors.darkPurple};
+    border-bottom: 1px solid ${({ theme }: ITheme) => theme.colors.darkPurple};
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 0 40x;
 
     ${Input} {
-        font-size: ${({ theme }: Theme) => theme.fontSize.xl};
+        font-size: ${({ theme }: ITheme) => theme.fontSize.xl};
         width: 100%;
         max-width: 350px;
-        border: 2px solid ${({ theme }: Theme) => theme.colors.lightPurple};
+        border: 2px solid ${({ theme }: ITheme) => theme.colors.lightPurple};
     }
 `
 
 export const StatusInfo = styled.div`
-    color: ${({ theme }: Theme) => theme.colors.darkGrey};
-    font-size: ${({ theme }: Theme) => theme.fontSize.l};
+    color: ${({ theme }: ITheme) => theme.colors.darkGrey};
+    font-size: ${({ theme }: ITheme) => theme.fontSize.l};
     margin-right: 40px;
 
     p {
@@ -50,21 +50,21 @@ export const SearchResults = styled.ul`
     top: 30px;
     display: flex;
     flex-direction: column;
-    background-color: ${({ theme }: Theme) => theme.colors.white};
+    background-color: ${({ theme }: ITheme) => theme.colors.white};
 `
 export const SearchResultsItem = styled.li`
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.darkGrey};
+    color: ${({ theme }: ITheme) => theme.colors.darkGrey};
     background-color: ${({ theme, isHighlighted }: IThemeAndIsHighlighted) =>
         isHighlighted ? theme.colors.lightPurple : theme.colors.white};
     width: 100%;
     padding: 20px 5px;
 
     &:hover {
-        background-color: ${({ theme }: Theme) => theme.colors.lightPurple};
+        background-color: ${({ theme }: ITheme) => theme.colors.lightPurple};
     }
 
     &:not(:last-child) {
-        border-bottom: 1px solid ${({ theme }: Theme) => theme.colors.darkPurple};
+        border-bottom: 1px solid ${({ theme }: ITheme) => theme.colors.darkPurple};
     }
 `

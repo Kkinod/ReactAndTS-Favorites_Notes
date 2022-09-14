@@ -1,5 +1,6 @@
 import DeleteButton from '../../atoms/DeleteButton/DeleteButton'
-import Wrapper, { StyledAverage, StyledInfo } from './StudentsListItem.styled'
+import Wrapper, { StyledInfo } from './StudentsListItem.styled'
+import { Average } from '../../atoms/Average/Average'
 
 interface IUsersList {
     userData: {
@@ -18,7 +19,7 @@ const StudentsListItem = ({
 }: IUsersList) => {
     return (
         <Wrapper {...props}>
-            <StyledAverage value={average}>{average}</StyledAverage>
+            <Average value={average}>{average}</Average>
             <StyledInfo>
                 <p>
                     {name}
