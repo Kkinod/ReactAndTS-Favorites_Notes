@@ -1,6 +1,7 @@
 import { rest } from 'msw'
 import { students } from '../data/students'
 import { groups } from '../data/groups'
+import { db } from '../db'
 
 export interface IUsersList {
     id: string
@@ -16,6 +17,10 @@ export interface IUsersList {
 }
 
 export const handlers = [
+    rest.get('/fruits', (req, res, ctx) => {
+        const fruits = db.student.getAll()
+        return res(ctx.status(200), ctx.json(fruits))
+    }),
     rest.get('/groups', (req, res, ctx) => {
         return res(ctx.status(200), ctx.json({ groups }))
     }),

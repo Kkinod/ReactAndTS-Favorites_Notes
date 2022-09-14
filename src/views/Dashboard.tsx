@@ -8,6 +8,7 @@ import { GroupWrapper, TitleWrapper, Wrapper } from '../views/Dashboard.styles'
 import { IUsersList } from '../mocks/handlers/index'
 import StudentDetails from '../components/molecules/StudentDetails/StudentDetails'
 import Modal from '../components/organisms/Modal/Modal'
+import axios from 'axios'
 
 const mockStudent = {
     id: '1',
@@ -44,6 +45,8 @@ const Dashboard = () => {
             const groups = await getGroups()
             setGroups(groups)
         })()
+
+        axios.get('/fruits').then((res) => console.log(res))
     }, [getGroups])
 
     const handleOpenStudentDetails = async (id: any) => {
