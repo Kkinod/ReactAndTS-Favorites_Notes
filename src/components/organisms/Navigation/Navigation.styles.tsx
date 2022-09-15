@@ -36,6 +36,7 @@ export const Logo = styled.div`
 export const StyledLink = styled(NavLink).attrs({
     className: (navData) => (navData.isActive ? 'active' : ''),
 })`
+    cursor: pointer;
     font-weight: bold;
     text-decoration: none;
     color: ${({ theme }: ITheme) => theme.colors.darkGrey};
