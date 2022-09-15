@@ -1,18 +1,18 @@
 import { rest } from 'msw'
 import { db } from '../db'
 
-export interface IUsersList {
-    id: string
-    name: string
-    attendance: string
-    average: string | number
-    group: string
-    course?: string
-    grades?: {
-        subject: string
-        average: string
-    }[]
-}
+// export interface IUsersList {
+//     id: string
+//     name: string
+//     attendance: string
+//     average: string | number
+//     group: string
+//     course?: string
+//     grades?: {
+//         subject: string
+//         average: string
+//     }[]
+// }
 
 export const students = [
     rest.get('/students/:id', (req, res, ctx) => {

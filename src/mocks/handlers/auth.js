@@ -3,7 +3,7 @@ import { db } from '../db'
 import { authenticateRequest } from '../helpers'
 
 // ANY TYPE!
-const sanitizeUser = (user: any) => {
+const sanitizeUser = (user) => {
     const { password, ...rest } = user
     return rest
 }
@@ -18,7 +18,7 @@ export const auth = [
             },
         })
         if (user?.password === req.body?.password) {
-            const token: string = btoa(user?.login)
+            const token = btoa(user?.login)
             localStorage.setItem('__be_token__', token)
             return res(ctx.status(200), ctx.json({ ...sanitizeUser(user), token }))
         }
