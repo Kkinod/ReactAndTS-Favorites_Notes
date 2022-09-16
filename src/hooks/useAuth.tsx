@@ -1,6 +1,7 @@
 import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { IInputs } from '../views/App'
+import { useError } from './useError'
 
 interface IAuthProvider {
     children: ReactNode
@@ -10,6 +11,8 @@ const AuthContext = React.createContext({})
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
     const [user, setUser] = useState(null)
+    // ANY TYPE
+    const { dispatchError } = useError() as any
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -39,7 +42,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
             setUser(response.data)
             localStorage.setItem('token', response.data.token)
         } catch (e) {
-            console.log(e)
+            dispatchError('Invalid email or password')
         }
     }
 

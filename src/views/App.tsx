@@ -7,6 +7,8 @@ import FormField from '../components/molecules/FormField/FormField'
 import Button from '../components/atoms/Button/Button'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../hooks/useAuth'
+import ErrorMessage from '../components/molecules/ErrorMessage/ErrorMessage'
+import { useError } from '../hooks/useError'
 
 export interface IUsersList {
     id(id: any): void
@@ -77,9 +79,14 @@ const UnAuthenticatedApp = () => {
 const App = () => {
     // ANY TYPE!!!!
     const auth: any = useAuth()
-    console.log(auth)
+    const { error } = useError() as any
 
-    return auth.user ? <AuthenticatedApp /> : <UnAuthenticatedApp />
+    return (
+        <>
+            {error ? <ErrorMessage /> : null}
+            {auth.user ? <AuthenticatedApp /> : <UnAuthenticatedApp />}
+        </>
+    )
 }
 
 export default App
