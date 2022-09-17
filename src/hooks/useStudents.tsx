@@ -12,7 +12,6 @@ studentsAPI.interceptors.request.use(
                 config.headers.authorization = `Bearer ${token}`
             }
         }
-
         return config
     },
     (error) => {

@@ -12,8 +12,6 @@ interface IUsersListProps {
 }
 
 // ANY TYPE
-
-// const UsersList = ({ users = [], deleteWorker }: IUsersListProps) => {
 const StudentsList = ({ handleOpenStudentDetails }: { handleOpenStudentDetails: any }) => {
     const [students, setStudents] = useState([])
     const { id } = useParams()
@@ -30,7 +28,7 @@ const StudentsList = ({ handleOpenStudentDetails }: { handleOpenStudentDetails: 
         <>
             <Title>Worker list</Title>
             <StyledList>
-                {students.map((userData: IUsersList) => (
+                {students.map((userData: IUsersList, index) => (
                     <StudentsListItem
                         onClick={() => handleOpenStudentDetails(userData.id)}
                         key={userData.name}

@@ -19,7 +19,6 @@ const StudentDetails = ({ student }: IStudent) => {
     return (
         <Wrapper>
             <BigAverage value={student?.average as number}>{student?.average}</BigAverage>
-            {/* <Title isBig>{student.name}</Title> */}
             <Title>{student?.name}</Title>
             <StyledDetails>
                 <StyledLabel>Course:</StyledLabel>
