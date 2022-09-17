@@ -51,7 +51,7 @@ export const students = [
         const matchingStudents = db.student.findMany({
             where: {
                 name: {
-                    contains: req.body?.searchPhrase,
+                    contains: req.body.searchPhrase,
                 },
             },
         })
