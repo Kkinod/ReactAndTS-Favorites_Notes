@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { render } from '@testing-library/react'
-import { ThemeProvider } from 'styled-components'
-import theme from './assets/styles/theme'
+import AppProviders from './providers/AppProviders'
 
-// ANY TYPE
-const AllTheProviders = ({ children }: { children: any }) => {
-    return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+interface IChildren {
+    children: ReactNode
+}
+
+const AllTheProviders = ({ children }: IChildren) => {
+    return <AppProviders>{children}</AppProviders>
 }
 
 const customRender = (ui: any, options?: any) =>
