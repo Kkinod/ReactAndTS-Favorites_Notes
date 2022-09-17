@@ -3,4 +3,34 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 // import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect'
+import { setupServer } from 'msw/node'
+import { db } from './mocks/db'
+import { handlers } from './mocks/handlers'
+
+const server = setupServer(...handlers)
+
+beforeAll(
+    () => {
+        db.group.create({
+            id: 'A',
+        })
+        db.group.create({
+            id: 'B',
+        })
+        db.group.create({
+            id: 'C',
+        })
+
+        db.teacher.create()
+
+        for (let i = 0; i < 15; i++) {
+            db.student.create()
+            db.event.create()
+        }
+    },
+
+    server.listen() as number | undefined
+)
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
