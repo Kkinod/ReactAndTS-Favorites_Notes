@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form'
 import { useAuth } from '../hooks/useAuth'
 import ErrorMessage from '../components/molecules/ErrorMessage/ErrorMessage'
 import { useError } from '../hooks/useError'
+import Notes from './Notes'
 
 export interface IUsersList {
     id(id: any): void
@@ -34,6 +35,7 @@ const AuthenticatedApp = () => {
                 <Routes>
                     <Route path='/' element={<Navigate replace to='/group/' />} />
                     <Route path='/group/:id' element={<Dashboard />} />
+                    <Route path='/notes' element={<Notes />} />
                 </Routes>
             </Wrapper>
         </MainTemplate>
