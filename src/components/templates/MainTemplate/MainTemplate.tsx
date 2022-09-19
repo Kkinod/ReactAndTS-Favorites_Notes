@@ -1,5 +1,6 @@
 import React from 'react'
 import Navigation from '../../organisms/Navigation/Navigation'
+import NotesWidget from '../../organisms/NotesWidget/NotesWidget'
 import { SearchBar } from '../../organisms/SearchBar/SearchBar'
 import { Wrapper } from '../../templates/MainTemplate/MainTemplate.styles'
 import NewsSection from '../NewsSection/NewsSection'
@@ -15,6 +16,7 @@ const MainTemplate = ({ children }: IChildren) => {
             <SearchBar />
             {children}
             <NewsSection />
+            <NotesWidget />
         </Wrapper>
     )
 }

@@ -20,26 +20,45 @@ interface IFormField {
     name: string
     id: string
     type?: string
+    isTextarea?: boolean
 }
 
+// IGNORE !!! - poprawic
 const FormField = forwardRef(
     (
-        { onChange, value, label, name, id, type = 'text', ...props }: IFormField,
+        { onChange, value, label, name, id, type = 'text', isTextarea, ...props }: IFormField,
         ref: React.ForwardedRef<HTMLInputElement>,
     ) => {
         return (
             <Wrapper>
                 <Label htmlFor={id}>{label}</Label>
-                <Input
-                    name={name}
-                    id={id}
-                    type={type}
-                    value={value}
-                    onChange={onChange}
-                    data-testid={label}
-                    {...props}
-                    ref={ref}
-                />
+                {isTextarea ? (
+                    <Input
+                        isTextarea
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        as='textarea'
+                        name={name}
+                        id={id}
+                        type={type}
+                        value={value}
+                        onChange={onChange}
+                        data-testid={label}
+                        {...props}
+                        ref={ref}
+                    />
+                ) : (
+                    <Input
+                        name={name}
+                        id={id}
+                        type={type}
+                        value={value}
+                        onChange={onChange}
+                        data-testid={label}
+                        {...props}
+                        ref={ref}
+                    />
+                )}
             </Wrapper>
         )
     },
