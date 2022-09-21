@@ -1,42 +1,37 @@
 import React from 'react'
-import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import Note from '../../molecules/Note/Note'
+import Note, { INote } from '../../molecules/Note/Note'
+import { useGetNotesQuery } from '../../../store'
 import {
     NotesWrapper,
     WidgetHandler,
     Wrapper,
 } from '../../organisms/NotesWidget/NotesWidget.styles'
 
-interface IRootState {
-    notes: [
-        {
-            id: string
-            title: string
-            content: string
-        },
-    ]
-}
-
 // ANY TYPE (can be "DefaultRootState" ?)
 const NotesWidget = () => {
     const [isOpen, setIsOpen] = React.useState(false)
-    const notes = useSelector((state: IRootState) => state.notes)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const { data, isLoading } = useGetNotesQuery()
 
     const handleToggleWidget = () => setIsOpen((prevState) => !prevState)
 
     return (
         <Wrapper isOpen={isOpen}>
             <WidgetHandler onClick={handleToggleWidget}>notes</WidgetHandler>
-            <NotesWrapper>
-                {notes.length ? (
-                    notes.map(({ title, content, id }) => (
-                        <Note id={id} key={id} title={title} content={content} />
-                    ))
-                ) : (
-                    <p>Create your first note</p>
-                )}
-            </NotesWrapper>
+            {isLoading ? (
+                <h3>Loading...</h3>
+            ) : (
+                <NotesWrapper>
+                    {data.notes.length ? (
+                        data.notes.map(({ title, content, id }: INote) => (
+                            <Note id={id} key={id} title={title} content={content} />
+                        ))
+                    ) : (
+                        <p>Create your first note</p>
+                    )}
+                </NotesWrapper>
+            )}
         </Wrapper>
     )
 }
