@@ -1,20 +1,19 @@
 import React from 'react'
 import Title from '../../atoms/Title/Title'
-import { useDispatch } from 'react-redux'
-import { removeNote } from '../../../store'
+import { useRemoveNoteMutation } from '../../../store'
 import { NoteWrapper, StyledDeleteButton } from '../../molecules/Note/Note.styles'
 
-interface INote {
+export interface INote {
     title?: string
     content?: string
     id: string
 }
 
 const Note = ({ title = 'Untitled', content = 'No content', id }: INote) => {
-    const dispatch = useDispatch()
+    const [removeNote] = useRemoveNoteMutation()
 
     const handleRemoveNote = () => {
-        dispatch(removeNote({ id: id }))
+        removeNote({ id: id })
     }
 
     return (
