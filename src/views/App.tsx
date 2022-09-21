@@ -45,7 +45,6 @@ const AuthenticatedApp = () => {
 const UnAuthenticatedApp = () => {
     // ANY TYPE!!!!
     const auth: any = useAuth()
-    console.log(`AUTH: ${auth}`)
 
     const {
         register,

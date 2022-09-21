@@ -20,6 +20,7 @@
     },
     "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
     "rules": {
+        "@typescript-eslint/ban-ts-ignore": "off",
         "react/react-in-jsx-scope": "off",
         "camelcase": "error",
         "spaced-comment": "error",
