@@ -1,6 +1,7 @@
 import { students } from '../handlers/students'
 import { groups } from '../handlers/groups'
 import { auth } from './auth'
+import { notes } from './notes'
 
 export interface IUsersList {
     id: string
@@ -15,4 +16,4 @@ export interface IUsersList {
     }[]
 }
 
-export const handlers = [...groups, ...students, ...auth]
+export const handlers = [...groups, ...students, ...auth, ...notes]
