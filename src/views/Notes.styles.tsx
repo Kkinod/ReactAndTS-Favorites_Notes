@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ITheme } from '../assets/styles/theme'
 import FormField from '../components/molecules/FormField/FormField'
 
 export const Wrapper = styled.div`
@@ -12,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const FormWrapper = styled.div`
     padding: 40px;
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }: ITheme) => theme.colors.white};
     border-radius: 25px;
     width: 100%;
     height: 80%;
