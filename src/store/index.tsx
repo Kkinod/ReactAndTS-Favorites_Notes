@@ -1,11 +1,6 @@
 import { v4 as uuid } from 'uuid'
 import { createSlice, configureStore } from '@reduxjs/toolkit'
-
-interface IPayload {
-    id?: string
-    title?: string
-    content?: string
-}
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const initialNotesState = [
     {
@@ -15,12 +10,24 @@ const initialNotesState = [
     },
 ]
 
-// ANY type
+const notesApi = createApi({
+    baseQuery: fetchBaseQuery({
+        baseUrl: '/',
+    }),
+    endpoints: (builder) => ({
+        getNotes: builder.query({
+            query: () => 'notes',
+        }),
+    }),
+})
+
+export const { useGetNotesQuery } = notesApi
+
 const notesSlice = createSlice({
     name: 'notes',
     initialState: initialNotesState,
     reducers: {
-        addNote(state: any, action) {
+        addNote(state, action) {
             state.push({
                 id: uuid(),
                 ...action.payload,
@@ -36,6 +43,7 @@ export const { addNote, removeNote } = notesSlice.actions
 
 export const store = configureStore({
     reducer: {
+        [notesApi.reducerPath]: notesApi.reducer,
         notes: notesSlice.reducer,
     },
 })

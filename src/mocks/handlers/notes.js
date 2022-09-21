@@ -7,23 +7,23 @@ export const notes = [
         return res(ctx.status(200), ctx.json({ notes: db.note.getAll() }))
     }),
     rest.post('/notes', (req, res, ctx) => {
-        const newNote = {
-            id: faker.datatype.uuid(),
-            title: req.body.title,
-            content: req.body.content,
-        }
-
-        db.note.create(newNote);
-
         if (req?.body?.title && req.body.content) {
+            const newNote = {
+                id: faker.datatype.uuid(),
+                title: req.body.title,
+                content: req.body.content,
+            }
+
+            db.note.create(newNote)
+
             return res(
-                ctx.status(201),
+                ctx.status(200),
                 ctx.json({
                     notes: newNote,
                 }),
             )
         }
-
+        
         return res(
             ctx.status(404),
             ctx.json({
