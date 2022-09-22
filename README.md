@@ -1,6 +1,8 @@
 A project created as part of developing my own programming skills in:
 
-- React!
+- React!:
+  - Redux
+  - Redux Toolkit
 - TypeScript!
 - Tests!
 
