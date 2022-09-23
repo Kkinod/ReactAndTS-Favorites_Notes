@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { render } from '@testing-library/react'
-import { ThemeProvider } from 'styled-components'
-import theme from '../assets/styles/theme'
 import UsersProvider from '../providers/UsersProviders'
+import theme from '../assets/styles/theme'
+import { ThemeProvider } from 'styled-components'
 
-export const renderWithProviders = (children) => {
+export const renderWithProviders = (children: ReactNode) => {
     return render(
         <ThemeProvider theme={theme}>
             <UsersProvider>{children}</UsersProvider>

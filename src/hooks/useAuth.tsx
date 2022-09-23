@@ -7,6 +7,12 @@ interface IAuthProvider {
     children: ReactNode
 }
 
+export interface IAuth {
+    user: string
+    signIn: ({ login, password }: IInputs) => Promise<void>
+    signOut: () => void
+}
+
 const AuthContext = React.createContext({})
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
@@ -55,7 +61,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
 }
 
 export const useAuth = () => {
-    const auth = useContext(AuthContext)
+    const auth = useContext(AuthContext) as IAuth
 
     if (!auth) {
         throw Error('useAuth need to be used inside AuthContext')

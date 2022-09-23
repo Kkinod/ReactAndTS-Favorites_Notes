@@ -1,18 +1,19 @@
 import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
-import Dashboard from './Dashboard'
-import MainTemplate from '../components/templates/MainTemplate/MainTemplate'
-import Wrapper from './App.styles'
-import FormField from '../components/molecules/FormField/FormField'
 import Button from '../components/atoms/Button/Button'
-import { useForm } from 'react-hook-form'
-import { useAuth } from '../hooks/useAuth'
+import Dashboard from './Dashboard'
 import ErrorMessage from '../components/molecules/ErrorMessage/ErrorMessage'
-import { useError } from '../hooks/useError'
+import FormField from '../components/molecules/FormField/FormField'
 import Notes from './Notes'
+import MainTemplate from '../components/templates/MainTemplate/MainTemplate'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
+import { useError } from '../hooks/useError'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import Wrapper from './App.styles'
+import { String } from 'lodash'
 
 export interface IUsersList {
-    id(id: any): void
+    id(id: string): void
     name: string
     attendance: string
     average: string
@@ -23,9 +24,8 @@ export interface IInputs {
     password: string
 }
 
-interface IHandleSignIn {
-    handleSignIn: any
-    loginError: any
+interface IError {
+    error?: string
 }
 
 const AuthenticatedApp = () => {
@@ -43,8 +43,7 @@ const AuthenticatedApp = () => {
 }
 
 const UnAuthenticatedApp = () => {
-    // ANY TYPE!!!!
-    const auth: any = useAuth()
+    const auth = useAuth()
 
     const {
         register,
@@ -78,9 +77,8 @@ const UnAuthenticatedApp = () => {
 }
 
 const App = () => {
-    // ANY TYPE!!!!
-    const auth: any = useAuth()
-    const { error } = useError() as any
+    const auth = useAuth()
+    const { error }: IError = useError()
 
     return (
         <>

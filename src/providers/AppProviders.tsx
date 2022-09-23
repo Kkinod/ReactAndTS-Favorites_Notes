@@ -8,7 +8,7 @@ import { ErrorProvider } from '../hooks/useError'
 import { Provider } from 'react-redux'
 import { store } from '../store'
 
-interface IChildren {
+export interface IChildren {
     children: ReactNode
 }
 
