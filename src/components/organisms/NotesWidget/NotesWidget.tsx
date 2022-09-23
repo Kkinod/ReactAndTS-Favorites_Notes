@@ -7,7 +7,6 @@ import {
     Wrapper,
 } from '../../organisms/NotesWidget/NotesWidget.styles'
 
-// ANY TYPE (can be "DefaultRootState" ?)
 const NotesWidget = () => {
     const [isOpen, setIsOpen] = React.useState(false)
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
