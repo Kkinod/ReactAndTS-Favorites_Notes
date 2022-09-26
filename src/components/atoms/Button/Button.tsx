@@ -3,7 +3,7 @@ import { ITheme, IIsBig } from '../../../assets/styles/theme'
 
 type TIsBigAndTheme = IIsBig & ITheme
 
-export const Button = styled.button`
+const Button = styled.button`
     cursor: pointer;
     margin: 15px 0;
     padding: ${({ isBig }: IIsBig) => (isBig ? '10px 38px' : '7px 20px')};

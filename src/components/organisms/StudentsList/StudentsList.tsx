@@ -4,8 +4,13 @@ import Title from '../../atoms/Title/Title'
 import StudentsListItem from '../../molecules/StudentsListItem/StudentsListItem'
 import { useStudents } from '../../../hooks/useStudents'
 import StyledList from './StudentsList.styled'
-import { IUsersList } from '../../../views/App'
 
+interface IUsersList {
+    id: string
+    name: string
+    attendance: string
+    average: string
+}
 interface IUsersListProps {
     users: IUsersList[]
     deleteWorker?: (name: string) => void

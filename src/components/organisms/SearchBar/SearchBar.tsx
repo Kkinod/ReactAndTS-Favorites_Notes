@@ -11,15 +11,10 @@ import {
     StatusInfo,
 } from './SearchBar.styles'
 
-interface IInputValue {
-    inputValue: string | number | undefined
-}
-
 export const SearchBar = () => {
     const [matchingStudents, setMatchingStudents] = useState([])
     const { findStudents } = useStudents()
 
-    // BŁĄD Z WYŚWIETLANIE LISTY, zwrot z axiosa 404
     const getMatchingStudents = debounce(async ({ inputValue }) => {
         const { students } = await findStudents(inputValue)
 
