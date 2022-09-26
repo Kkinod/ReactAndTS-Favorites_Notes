@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useStudents } from '../hooks/useStudents'
 import StudentsList from '../components/organisms/StudentsList/StudentsList'
@@ -8,36 +8,39 @@ import { GroupWrapper, TitleWrapper, Wrapper } from '../views/Dashboard.styles'
 import { IUsersList } from '../mocks/handlers/index'
 import StudentDetails from '../components/molecules/StudentDetails/StudentDetails'
 import Modal from '../components/organisms/Modal/Modal'
+import { useGetGroupsQuery } from '../store'
 
 const Dashboard = () => {
-    const [groups, setGroups] = useState([])
     const [currentStudent, setCurrentStudent] = useState<IUsersList>()
-    const { getGroups, getStudentById } = useStudents()
+    const { getStudentById } = useStudents()
     const { id } = useParams()
     const { isOpen, handleOpenModal, handleCloseModal } = useModal()
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const { data, isLoading } = useGetGroupsQuery()
 
-    useEffect(() => {
-        ;(async () => {
-            const groups = await getGroups()
-            setGroups(groups)
-        })()
-    }, [getGroups])
-
-    const handleOpenStudentDetails = async (id: any) => {
+    const handleOpenStudentDetails = async (id: string) => {
         const student = await getStudentById(id)
         setCurrentStudent(student)
         handleOpenModal()
     }
 
-    if (!id && groups.length > 0) return <Navigate replace to={`/group/${groups[0]}`} />
+    if (isLoading) {
+        return (
+            <Wrapper>
+                <TitleWrapper>Loading...</TitleWrapper>
+            </Wrapper>
+        )
+    }
 
-    // ANY TYPE
+    if (!id && data.groups.length > 0) return <Navigate replace to={`/group/${data.groups[0]}`} />
+
     return (
         <Wrapper>
             <TitleWrapper>
                 <Title as='h2'>Group {id}</Title>
                 <nav>
-                    {groups.map(({ id }) => (
+                    {data.groups.map(({ id }: { id: string }) => (
                         <Link key={id} to={`/group/${id}`}>
                             {id}{' '}
                         </Link>

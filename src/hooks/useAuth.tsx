@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import { IInputs } from '../views/App'
+import { IInputs } from '../views/Authentication/UnAuthenticatedApp'
 import { useError } from './useError'
 
 interface IAuthProvider {
