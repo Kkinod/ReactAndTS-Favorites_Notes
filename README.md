@@ -4,7 +4,10 @@ A project created as part of developing my own programming skills in:
   - Redux
   - Redux Toolkit
 - TypeScript!
-- Tests!
+- Tests:
+  - unit tests
+  - introduction to integration tests
+  - E2E tests
 
 Additionally:
 - project configuration: eslint, prettier, husky, lint-staged
