@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { Wrapper } from '../Dashboard.styles'
 import Dashboard from '../Dashboard'
 import MainTemplate from '../../components/templates/MainTemplate/MainTemplate'
 import Notes from '../Notes'
+import { Wrapper } from '../Dashboard.styles'
 
 const AuthenticatedApp = () => {
     return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './views/App'
 import { worker } from './mocks/browser'
+import App from './views/App'
 import AppProviders from './providers/AppProviders'
 
 worker.start().then(() => {

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { IUsersList } from '../mocks/handlers/index'
+import { useGetGroupsQuery } from '../store'
 import { useStudents } from '../hooks/useStudents'
+import StudentDetails from '../components/molecules/StudentDetails/StudentDetails'
 import StudentsList from '../components/organisms/StudentsList/StudentsList'
+import Modal from '../components/organisms/Modal/Modal'
 import Title from '../components/atoms/Title/Title'
 import useModal from '../components/organisms/Modal/useModal'
 import { GroupWrapper, TitleWrapper, Wrapper } from '../views/Dashboard.styles'
-import { IUsersList } from '../mocks/handlers/index'
-import StudentDetails from '../components/molecules/StudentDetails/StudentDetails'
-import Modal from '../components/organisms/Modal/Modal'
-import { useGetGroupsQuery } from '../store'
 
 const Dashboard = () => {
     const [currentStudent, setCurrentStudent] = useState<IUsersList>()

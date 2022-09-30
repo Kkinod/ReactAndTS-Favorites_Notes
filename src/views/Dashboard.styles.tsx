@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { ITheme } from '../assets/styles/theme'
 import ViewWrapper from '../components/molecules/ViewWrapper/ViewWrapper'
 
 export const Wrapper = styled.div`
@@ -26,10 +27,10 @@ export const TitleWrapper = styled.div`
         width: 30px;
         height: 30px;
         text-decoration: none;
-        color: ${({ theme }) => theme.colors.darkGrey};
+        color: ${({ theme }: ITheme) => theme.colors.darkGrey};
         font-weight: bold;
     }
     nav a:hover {
-        background-color: ${({ theme }) => theme.colors.lightPurple};
+        background-color: ${({ theme }: ITheme) => theme.colors.lightPurple};
     }
 `

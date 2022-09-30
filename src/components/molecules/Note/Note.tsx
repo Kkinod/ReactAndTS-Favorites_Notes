@@ -1,6 +1,6 @@
 import React from 'react'
-import Title from '../../atoms/Title/Title'
 import { useRemoveNoteMutation } from '../../../store'
+import Title from '../../atoms/Title/Title'
 import { NoteWrapper, StyledDeleteButton } from '../../molecules/Note/Note.styles'
 
 export interface INote {

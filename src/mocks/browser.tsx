@@ -1,6 +1,7 @@
 import { setupWorker } from 'msw'
 import { db } from './db'
 import { handlers } from '../mocks/handlers'
+import { Entity, ModelDictionary } from '@mswjs/data/lib/glossary'
 
 export const worker = setupWorker(...handlers)
 
@@ -30,7 +31,12 @@ seed()
 
 declare global {
     interface Window {
-        mocks: any
+        mocks: {
+            seed: () => void
+            getStudents: () => Entity<ModelDictionary, string>[]
+            getEvents: () => Entity<ModelDictionary, string>[]
+            getGroups: () => Entity<ModelDictionary, string>[]
+        }
     }
 }
 

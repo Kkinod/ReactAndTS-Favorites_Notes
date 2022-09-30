@@ -16,11 +16,9 @@ const Notes = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm()
+    } = useForm<INote>()
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const { data, isLoading } = useGetNotesQuery()
+    const { data, isLoading } = (useGetNotesQuery as any)()
     const [addNote] = useAddNoteMutation()
 
     const handleAddNote = ({ title, content }: INote) => {
@@ -29,8 +27,6 @@ const Notes = () => {
 
     return (
         <Wrapper>
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore */}
             <FormWrapper onSubmit={handleSubmit(handleAddNote)}>
                 <StyledFormField
                     {...register('title', { required: true })}
