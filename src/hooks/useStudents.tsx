@@ -38,8 +38,7 @@ export const useStudents = () => {
         }
     }, [])
 
-    // ANY TYPE
-    const getStudentsByGroup = useCallback(async (groupId: any) => {
+    const getStudentsByGroup = useCallback(async (groupId: string) => {
         try {
             const result = await studentsAPI.get(`/groups/${groupId}`)
             return result.data.students

@@ -11,20 +11,19 @@ interface IUsersList {
     attendance: string
     average: string
 }
-interface IUsersListProps {
-    users: IUsersList[]
-    deleteWorker?: (name: string) => void
+
+interface IHandleOpenStudentDetails {
+    handleOpenStudentDetails: (id: string) => void
 }
 
-// ANY TYPE
-const StudentsList = ({ handleOpenStudentDetails }: { handleOpenStudentDetails: any }) => {
+const StudentsList = ({ handleOpenStudentDetails }: IHandleOpenStudentDetails) => {
     const [students, setStudents] = useState([])
     const { id } = useParams()
     const { getStudentsByGroup } = useStudents()
 
     useEffect(() => {
         ;(async () => {
-            const students = await getStudentsByGroup(id)
+            const students = await getStudentsByGroup(id as string)
             setStudents(students)
         })()
     }, [getStudentsByGroup, id])
@@ -33,7 +32,7 @@ const StudentsList = ({ handleOpenStudentDetails }: { handleOpenStudentDetails: 
         <>
             <Title>Worker list</Title>
             <StyledList>
-                {students.map((userData: IUsersList, index) => (
+                {students.map((userData: IUsersList) => (
                     <StudentsListItem
                         onClick={() => handleOpenStudentDetails(userData.id)}
                         key={userData.name}

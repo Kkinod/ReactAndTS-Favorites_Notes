@@ -13,12 +13,15 @@ export interface IAuth {
     signOut: () => void
 }
 
+interface IError {
+    dispatchError: (message: string) => string
+}
+
 const AuthContext = React.createContext({})
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
     const [user, setUser] = useState(null)
-    // ANY TYPE
-    const { dispatchError } = useError() as any
+    const { dispatchError } = useError() as IError
 
     useEffect(() => {
         const token = localStorage.getItem('token')
