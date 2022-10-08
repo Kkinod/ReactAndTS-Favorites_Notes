@@ -1,18 +1,9 @@
 import { rest } from 'msw'
 import { db } from '../db'
 
-// export interface IUsersList {
-//     id: string
-//     name: string
-//     attendance: string
-//     average: string | number
-//     group: string
-//     course?: string
-//     grades?: {
-//         subject: string
-//         average: string
-//     }[]
-// }
+interface IResBody {
+    searchPhrase: string
+}
 
 export const students = [
     rest.get('/students/:id', (req, res, ctx) => {
@@ -51,7 +42,7 @@ export const students = [
         const matchingStudents = db.student.findMany({
             where: {
                 name: {
-                    contains: req.body.searchPhrase,
+                    contains: (req.body as IResBody).searchPhrase,
                 },
             },
         })

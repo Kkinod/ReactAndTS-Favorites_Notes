@@ -9,7 +9,6 @@ describe('Form Field', () => {
     })
 })
 
-// Fake input and button
 const InputWithButton = () => {
     const [inputValue, setInputValue] = useState('')
 

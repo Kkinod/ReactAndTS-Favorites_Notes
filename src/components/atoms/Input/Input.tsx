@@ -2,10 +2,8 @@ import styled from 'styled-components'
 import { ITheme } from '../../../assets/styles/theme'
 
 interface IIsTextArea {
-    isTextarea: boolean
+    isTextarea?: boolean
 }
-
-// border-radius: ${({ isTextarea }: IIsTextArea) => (isTextarea ? '15px' : '25px')};
 
 export const Input = styled.input`
     padding: 10px 12px;
@@ -13,7 +11,7 @@ export const Input = styled.input`
     box-sizing: border-box;
     box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
     font-size: ${({ theme }: ITheme) => theme.fontSize.l};
-    border-radius: 25px;
+    border-radius: ${({ isTextarea }: any) => (isTextarea ? '15px' : '25px')};
     resize: none;
     &:focus {
         outline: none;
