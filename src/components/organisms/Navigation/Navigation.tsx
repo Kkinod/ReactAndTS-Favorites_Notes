@@ -3,8 +3,7 @@ import { useAuth } from '../../../hooks/useAuth'
 import { Logo, StyledLink, Wrapper } from './Navigation.styles'
 
 const Navigation = () => {
-    // ANY TYPE!!!!
-    const auth: any = useAuth()
+    const auth = useAuth()
 
     return (
         <Wrapper>

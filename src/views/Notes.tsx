@@ -1,9 +1,9 @@
 import React from 'react'
+import { FormWrapper, NotesWrapper, StyledFormField, Wrapper } from './Notes.styles'
+import { useAddNoteMutation, useGetNotesQuery } from '../store/api/notes'
+import { useForm } from 'react-hook-form'
 import Button from '../components/atoms/Button/Button'
 import Note from '../components/molecules/Note/Note'
-import { useAddNoteMutation, useGetNotesQuery } from '../store/api/notes'
-import { FormWrapper, NotesWrapper, StyledFormField, Wrapper } from './Notes.styles'
-import { useForm } from 'react-hook-form'
 
 interface INote {
     id: string

@@ -12,7 +12,6 @@ interface IUsersList {
     onClick?: () => void
 }
 
-// const UsersListItem = ({ name, attendance = '0%', average }: IUsersList) => {
 const StudentsListItem = ({
     userData: { average, name, attendance = '0%' },
     ...props

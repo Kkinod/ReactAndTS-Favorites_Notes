@@ -3,6 +3,7 @@ import debounce from 'lodash.debounce'
 import { useCombobox } from 'downshift'
 import { useStudents } from '../../../hooks/useStudents'
 import { Input } from '../../atoms/Input/Input'
+import { IUsersList } from '../../../mocks/handlers'
 import {
     SearchResultsItem,
     SearchBarWrapper,
@@ -21,7 +22,6 @@ export const SearchBar = () => {
         setMatchingStudents(students)
     }, 500)
 
-    // ANY TYPE !!!!
     const {
         isOpen,
         getMenuProps,
@@ -32,10 +32,9 @@ export const SearchBar = () => {
     } = useCombobox({
         items: matchingStudents,
         onInputValueChange: getMatchingStudents,
-        itemToString: (item: any) => (item ? item.name : ''),
+        itemToString: (item: IUsersList | null) => (item ? item.name : ''),
     })
 
-    // ANY TYPE!!!!!
     return (
         <SearchBarWrapper>
             <StatusInfo>
@@ -52,10 +51,10 @@ export const SearchBar = () => {
                     aria-label='results'
                 >
                     {isOpen &&
-                        matchingStudents.map((item: any, index) => (
+                        matchingStudents.map((item: IUsersList, index) => (
                             <SearchResultsItem
                                 isHighlighted={highlightedIndex === index}
-                                {...getItemProps({ item, index } as any)}
+                                {...getItemProps({ item, index })}
                                 key={item.id}
                             >
                                 {item.name}
