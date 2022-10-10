@@ -1,10 +1,11 @@
 A project created as part of developing my own programming skills in:
 
-- React!:
-  - Redux
-  - Redux Toolkit
+- React!
+  - With React:
+    - Redux
+    - Redux Toolkit
 - TypeScript!
-- Tests:
+- Tests (JEST and React Testing Library):
   - unit tests
   - introduction to integration tests
   - E2E tests
