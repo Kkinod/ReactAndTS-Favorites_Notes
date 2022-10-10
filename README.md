@@ -4,20 +4,14 @@ A project created as part of developing my own programming skills in:
   - With React:
     - Redux
     - Redux Toolkit
+- project configuration: eslint, prettier, husky, lint-staged
+- how to use and work with styled components
+- how to use the Atomic Design methodology in a project
 - TypeScript!
 - Tests (JEST and React Testing Library):
   - unit tests
   - introduction to integration tests
   - E2E tests
-
-Additionally:
-- project configuration: eslint, prettier, husky, lint-staged
-- how to use and work with styled components
-- how to use the Atomic Design methodology in a project
-- working with React Router
-- how to use React Context
-- application testing: JEST and React Testing Library
-
 
 
 ===============================================
